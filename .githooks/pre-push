@@ -5,23 +5,32 @@ force_push_allowed=false
 
 echo "Checking if push to $protected_branch branch is allowed..."
 
+
 # Check if -f flag is provided
-for arg in "$@"; do
-    if [ "$arg" = "-f" ]; then
-        $force_push_allowed=true
+for var in "$@"; do
+
+  echo $var
+
+    if [ "$var" = "-f" ]; then
+        echo "updating"
+        force_push_allowed=true
         break
     fi
 done
+
 
 echo $force_push_allowed
 
 while read local_ref local_sha remote_ref remote_sha
 do
+    ehco "in while"
     if [ "$local_ref" = "refs/heads/$protected_branch" ] && [ "$force_push_allowed" = false ]; then
             echo "Push to $protected_branch branch is not allowed."
             echo "Use 'git push -f' to force push if necessary."
             exit 1
     fi
+
+    exit 0
 done
 
 exit 0
