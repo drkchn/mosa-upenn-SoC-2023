@@ -4,14 +4,16 @@ protected_branch="main"
 
 echo "Checking if push to $protected_branch branch is allowed..."
 
+set -e # exit if the script encounters an error
+
+npm run lint:fix
+
 while read local_ref local_sha remote_ref remote_sha
 do
     if [ "$local_ref" = "refs/heads/$protected_branch" ]; then
             echo "Push to $protected_branch branch is not allowed."
             exit 1
     fi
-
-    exit 0
 done
 
 exit 0
