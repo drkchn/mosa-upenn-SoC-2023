@@ -13,6 +13,8 @@ for arg in "$@"; do
     fi
 done
 
+echo $force_push_allowed
+
 while read local_ref local_sha remote_ref remote_sha
 do
     if [ "$local_ref" = "refs/heads/$protected_branch" ] && [ "$force_push_allowed" = false ]; then
