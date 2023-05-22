@@ -3,6 +3,8 @@
 protected_branch="main"
 force_push_allowed=false
 
+echo "change"
+
 echo "Checking if push to $protected_branch branch is allowed..."
 
 # Check if -f flag is provided
