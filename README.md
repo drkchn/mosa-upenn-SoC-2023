@@ -8,18 +8,25 @@
 
 ## Git best pratices ##
 - never push to main
-- make descriptive branch names
-- add initials to end of commit message ex: `git commit -m "this is my message [cf]`
+- make descriptive branch names with the number of the issue you are working on 
+  - ex: if we want to add a login page 
+  1. create an issue describing what you want to do, git will asssign it a number, ex: #10 Add Login Page
+  2. Start from master (`git pull master`) 
+  3. Checkout a branch in the following format `git checkout -b #10-add-login-page`
+- When committing add issue number (must include # sign) to begging of the commit add initials to end of commit message ex: `git commit -m "[#10]this is my message [cf]`
+  - Putting the issue number in the commit will allow git to automatically link it to the issue 
+
+
 
 ## Git work flow ##
 - pull new updates `git pull`
-- checkout new branch `git checkout -b my-new-feature`
+- checkout new branch `git checkout -b #100-my-new-feature`
 - complete and test branch
-- commit and push updates to `my-new-feature` branch
+- commit and push updates to `#100-my-new-feature` branch
 - checkout and pull main `git checkout main` and `git pull`
-- checkout previous branch `git checkout my-new-feature` - no '-b' this time
-- merge `main` into `my-new-feature` branch `git merge main` ( can always abort with `git merge --abort`)
-- commit and push merge to `my-new-feature` branch
+- checkout previous branch `git checkout #100-my-new-feature` - no '-b' this time
+- merge `main` into `#100-my-new-feature` branch `git merge main` ( can always abort with `git merge --abort`)
+- commit and push merge to `#100-my-new-feature` branch
 - on github create a pull request merging `my-new-feature` into `main`
 
 ## Intellij Plugins ##
