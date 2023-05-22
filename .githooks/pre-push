@@ -3,14 +3,7 @@
 protected_branch="adding-pre-push"
 force_push_allowed=false
 
-echo "change"
-
 echo "Checking if push to $protected_branch branch is allowed..."
-
-echo "======"
-echo arg
-echo "======"
-
 
 # Check if -f flag is provided
 for arg in "$@"; do
@@ -20,17 +13,8 @@ for arg in "$@"; do
     fi
 done
 
-echo "+++++++"
-echo  $force_push_allowed
-echo "+++++++"
-
-
 while read local_ref local_sha remote_ref remote_sha
 do
-  echo $local_ref
-  echo $local_sha
-  echo $remote_ref
-  echo $remote_sha
     if [ "$local_ref" = "refs/heads/$protected_branch" ] && [ "$force_push_allowed" = false ]; then
             echo "Push to $protected_branch branch is not allowed."
             echo "Use 'git push -f' to force push if necessary."
