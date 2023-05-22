@@ -8,7 +8,7 @@ echo "Checking if push to $protected_branch branch is allowed..."
 # Check if -f flag is provided
 for arg in "$@"; do
     if [ "$arg" = "-f" ]; then
-        force_push_allowed=true
+        $force_push_allowed=true
         break
     fi
 done
