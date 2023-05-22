@@ -31,13 +31,11 @@ do
   echo $local_sha
   echo $remote_ref
   echo $remote_sha
-#    if [ "$remote_ref" = "refs/heads/$protected_branch" ]; then
-#        if [ "$local_ref" != "$remote_ref" ] && [ "$force_push_allowed" = false ]; then
-#            echo "Push to $protected_branch branch is not allowed."
-#            echo "Use 'git push -f' to force push if necessary."
-#            exit 1
-#        fi
-#    fi
+    if [ "$local_ref" = "refs/heads/$protected_branch" ] && [ "$force_push_allowed" = false ]; then
+            echo "Push to $protected_branch branch is not allowed."
+            echo "Use 'git push -f' to force push if necessary."
+            exit 1
+    fi
 done
 
 exit 0
