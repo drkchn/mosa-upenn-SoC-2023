@@ -27,10 +27,10 @@ echo "+++++++"
 
 while read local_ref local_sha remote_ref remote_sha
 do
-  echo local_ref
-  echo local_sha
-  echo remote_ref
-  echo remote_sha
+  echo $local_ref
+  echo $local_sha
+  echo $remote_ref
+  echo $remote_sha
 #    if [ "$remote_ref" = "refs/heads/$protected_branch" ]; then
 #        if [ "$local_ref" != "$remote_ref" ] && [ "$force_push_allowed" = false ]; then
 #            echo "Push to $protected_branch branch is not allowed."
