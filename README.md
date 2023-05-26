@@ -19,6 +19,8 @@
 
 ## Git work flow ##
 - pull new updates `git pull`
+- add an issue for the feature your working on in github issues
+  - be sure to assign a participant and tag
 - checkout new branch `git checkout -b #100-my-new-feature`
 - complete and test branch
 - commit and push updates to `#100-my-new-feature` branch
