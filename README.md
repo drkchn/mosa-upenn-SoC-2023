@@ -6,6 +6,8 @@
 - run `npm run start`
 
 
+# Git # 
+
 ## Git best practices ## ##
 - never push to main
 - make descriptive branch names with the number of the issue you are working on 
@@ -30,12 +32,17 @@
 - commit and push merge to `#100-my-new-feature` branch
 - on github create a pull request merging `#100-my-new-feature` into `main`
 - request a code review from another member of the team
+- [More about trunk based development](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development)
 
 ## Working Issues ##
 - When you pickup and issue there make sure to assign it to yourself (or a group)
 - add the Doing tag
 - when the issue is complete and has been merged in main then add the completed tag and close the issue
 
+
+# Other Resources #
+- [The importance of unit testing](https://pflb.us/blog/unit-testing-importance/)
+- [Clean code by Bob C. Martin summary](https://blog.knoldus.com/clean-code-robert-c-martins-way/)
 
 ## Intellij Plugins ##
 - indent rainbow
