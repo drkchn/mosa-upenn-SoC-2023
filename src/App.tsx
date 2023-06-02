@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import UserTable from "./components/userTable/UserTable.tsx";
 import { UserData } from "./Interfaces.ts";
+import { Button } from "@mui/material";
 
 function App() {
   const [randomUsers, setRandomUsers] = useState<UserData[]>([]);
@@ -22,7 +23,15 @@ function App() {
   return (
     <>
       <h1>Click the button to get some random user data</h1>
-      <button onClick={getUsers}>Get Users</button>
+      <Button
+        sx={{
+          backgroundColor: "red",
+        }}
+        variant="outlined"
+        onClick={getUsers}
+      >
+        Get Users
+      </Button>
       <h1>Users:</h1>
       <UserTable userData={randomUsers} />
     </>
