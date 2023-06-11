@@ -1,39 +1,19 @@
-import { useState } from "react";
 import "./App.css";
-import axios from "axios";
-import UserTable from "./components/userTable/UserTable.tsx";
-import { UserData } from "./Interfaces.ts";
-import { Button } from "@mui/material";
+import { Home } from "./Pages/Home.tsx";
+import { Navbar } from "./components/navBar/Navbar.tsx";
+import { Route, Routes } from "react-router-dom";
+import { Page2 } from "./Pages/Page2.tsx";
+import { Example } from "./Pages/Example.tsx";
 
 function App() {
-  const [randomUsers, setRandomUsers] = useState<UserData[]>([]);
-
-  const getUsers = async () => {
-    axios
-      .get("https://randomuser.me/api/?results=5")
-      .then((res) => {
-        console.log(res.data);
-        setRandomUsers(res.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <>
-      <h1>Click the button to get some random user data</h1>
-      <Button
-        sx={{
-          backgroundColor: "red",
-        }}
-        variant="outlined"
-        onClick={getUsers}
-      >
-        Get Users
-      </Button>
-      <h1>Users:</h1>
-      <UserTable userData={randomUsers} />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/page2" element={<Page2 />} />
+        <Route path="/example" element={<Example />} />
+      </Routes>
     </>
   );
 }
