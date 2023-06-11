@@ -56,3 +56,8 @@
 - rainbow brackets
 
 
+# How to Deploy To Firebase #
+1. Install cli - `npm i -g firebase-cli`
+2. Login - `firebase login`
+3. If not a project already `firebase init`
+4. To deploy run `firebase deploy`
