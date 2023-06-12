@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import UserTable from "../components/userTable/UserTable.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserData } from "../Interfaces.ts";
 import axios from "axios";
 
@@ -18,6 +18,15 @@ export function Example() {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    let envTest = import.meta.env.VITE_TEST;
+    console.log(envTest);
+
+    console.log(
+      `${envTest} you can use backticks to inject the variale into a string`
+    );
+  }, []);
 
   return (
     <Box
