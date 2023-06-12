@@ -61,3 +61,20 @@
 2. Login - `firebase login`
 3. If not a project already `firebase init`
 4. To deploy run `firebase deploy`
+- [firebase docs](https://firebase.google.com/docs/hosting/quickstart)
+
+
+## Working with ENVs in React with Vite ##
+- [vite env docs](https://vitejs.dev/guide/env-and-mode.html)
+1. create a `.env` file in the root directory
+2. Add the following
+
+```
+VITE_TEST=example
+```
+- env must be prepended with VITE, or it will not be picked up.
+3. Use it in the application
+
+```
+
+```
