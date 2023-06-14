@@ -5,7 +5,10 @@ import { Route, Routes } from "react-router-dom";
 import { Page2 } from "./Pages/Page2.tsx";
 import { Example } from "./Pages/Example.tsx";
 
+
 function App() {
+
+
   return (
     <>
       <Navbar />

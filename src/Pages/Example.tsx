@@ -1,11 +1,19 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import UserTable from "../components/userTable/UserTable.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserData } from "../Interfaces.ts";
 import axios from "axios";
 
 export function Example() {
   const [randomUsers, setRandomUsers] = useState<UserData[]>([]);
+
+  // Get theme object from MUI
+  const theme = useTheme();
+  
+  // Check the console to view the theme object
+  useEffect(() => {
+    console.log(theme);
+  });
 
   const getUsers = async () => {
     axios
@@ -20,15 +28,20 @@ export function Example() {
   };
 
   return (
+    // MUI pallete can be accessed by the string notation as seen here
     <Box
       sx={{
-        backgroundColor: "red",
+        backgroundColor: "primary.main",
       }}
     >
-      <h1>Click the button to get some random user data</h1>
+      <Typography variant={"h1"} color="text.disabled">
+        Click the button to get some random user data
+      </Typography>
+
+      {/*MUI theme can be accessed by the object notation as seen here*/}
       <Button
         sx={{
-          backgroundColor: "red",
+          backgroundColor: theme.palette.secondary.main,
         }}
         variant="outlined"
         onClick={getUsers}
