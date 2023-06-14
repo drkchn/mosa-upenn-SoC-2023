@@ -9,7 +9,7 @@ export function Example() {
 
   // Get theme object from MUI
   const theme = useTheme();
-  
+
   // Check the console to view the theme object
   useEffect(() => {
     console.log(theme);
