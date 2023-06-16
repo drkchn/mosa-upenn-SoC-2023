@@ -11,6 +11,7 @@ export function Navbar() {
         <Link to={"/"}>Home</Link>
         <Link to={"/page2"}>page2</Link>
         <Link to={"/example"}>example</Link>
+        <Link to={"/example2"}>example2</Link>
       </Toolbar>
     </AppBar>
   );
