@@ -4,6 +4,7 @@ import { Navbar } from "./components/navBar/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
 import { Page2 } from "./Pages/Page2.tsx";
 import { Example } from "./Pages/Example.tsx";
+import { WhyVote } from "./Pages/WhyVote.tsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/page2" element={<Page2 />} />
         <Route path="/example" element={<Example />} />
+        <Route path="/whyvote" element={<WhyVote />} />
       </Routes>
     </>
   );
