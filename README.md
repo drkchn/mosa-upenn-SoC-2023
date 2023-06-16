@@ -74,7 +74,3 @@ VITE_TEST=example
 ```
 - env must be prepended with VITE, or it will not be picked up.
 3. Use it in the application
-
-```
-
-```

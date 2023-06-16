@@ -9,8 +9,9 @@ export function Navbar() {
           Basic Tool bar
         </Typography>
         <Link to={"/"}>Home</Link>
-        <Link to={"/page2"}>Why Vote?</Link>
-        <Link to={"/example"}>Example</Link>
+        <Link to={"/page2"}>page2</Link>
+        <Link to={"/example"}>example</Link>
+        <Link to={"/whyvote"}>whyvote</Link>
       </Toolbar>
     </AppBar>
   );

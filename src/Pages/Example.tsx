@@ -31,26 +31,30 @@ export function Example() {
     const envTest = import.meta.env.VITE_TEST;
     console.log(envTest);
 
+    const url = `https://google.com?apikey=${import.meta.env.VITE_API_KEY}`;
+    console.log({ url });
     console.log(
-      `${envTest} you can use backticks to inject the variale into a string`
+      `${envTest} you can use backticks to inject the variable into a string`
     );
   }, []);
 
   return (
-    // MUI pallete can be accessed by the string notation as seen here
+    // MUI pallet can be accessed by the string notation as seen here
     <Box
       sx={{
-        backgroundColor: "primary.main",
+        backgroundColor: "secondary.dark",
       }}
     >
-      <Typography variant={"h1"} color="text.disabled">
+      <h1></h1>
+
+      <Typography variant={"h1"} color="text.primary">
         Click the button to get some random user data
       </Typography>
 
       {/*MUI theme can be accessed by the object notation as seen here*/}
       <Button
         sx={{
-          backgroundColor: theme.palette.secondary.main,
+          backgroundColor: "red",
         }}
         variant="outlined"
         onClick={getUsers}
