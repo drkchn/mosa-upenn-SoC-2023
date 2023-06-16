@@ -28,7 +28,7 @@ export function Example() {
   };
 
   useEffect(() => {
-    let envTest = import.meta.env.VITE_TEST;
+    const envTest = import.meta.env.VITE_TEST;
     console.log(envTest);
 
     console.log(
