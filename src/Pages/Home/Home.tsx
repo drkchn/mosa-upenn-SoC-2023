@@ -3,17 +3,17 @@ import { Box, Button, TextField, Stack, InputAdornment } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
+const placeholders = [
+  "740 S. Magnolia Rd, Gastonia, NC 28052",
+  "9068 Saxon St, Wheaton, IL 60187",
+  "7696 N. Grand St, Buckeye, AZ 85326",
+];
+
 const MyComponent: React.FC = () => {
   const [value, setValue] = useState<string>("");
   const [placeholder, setPlaceholder] = useState<string>(
     "220 S. 33rd St, Philadelphia, PA 19104"
   );
-
-  const placeholders = [
-    "740 S. Magnolia Rd, Gastonia, NC 28052",
-    "9068 Saxon St, Wheaton, IL 60187",
-    "7696 N. Grand St, Buckeye, AZ 85326",
-  ];
 
   useEffect(() => {
     let placeholderIndex = 0;
