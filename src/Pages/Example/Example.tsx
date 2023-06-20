@@ -1,7 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
-import UserTable from "../components/userTable/UserTable.tsx";
+import UserTable from "../../components/userTable/UserTable.tsx";
 import { useEffect, useState } from "react";
-import { UserData } from "../Interfaces.ts";
+import { UserData } from "../../Interfaces.ts";
 import axios from "axios";
 
 export function Example() {
@@ -19,6 +19,7 @@ export function Example() {
     axios
       .get("https://randomuser.me/api/?results=5")
       .then((res) => {
+        console.log(res);
         console.log(res.data);
         setRandomUsers(res.data.results);
       })
@@ -45,14 +46,13 @@ export function Example() {
         backgroundColor: "secondary.dark",
       }}
     >
-      <h1></h1>
-
       <Typography variant={"h1"} color="text.primary">
         Click the button to get some random user data
       </Typography>
 
       {/*MUI theme can be accessed by the object notation as seen here*/}
       <Button
+        data-testid={"get-users-button"}
         sx={{
           backgroundColor: "red",
         }}
