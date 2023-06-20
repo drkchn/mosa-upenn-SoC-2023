@@ -7,6 +7,12 @@ const placeholders = [
   "740 S. Magnolia Rd, Gastonia, NC 28052",
   "9068 Saxon St, Wheaton, IL 60187",
   "7696 N. Grand St, Buckeye, AZ 85326",
+  "20 W. Buttonwood St, Littleton, CO 80123",
+  "521 Sussex Lane, Louisville, KY 40207",
+  "38917 Fremont Rd, Carmel, NY 10512",
+  "1250 N. Lantern Lane, Cocoa, FL 32927",
+  "47 Lake Forest Ave, Apple Valley, CA 92307",
+  "220 S. 33rd St, Philadelphia, PA 19104",
 ];
 
 const MyComponent: React.FC = () => {
@@ -28,6 +34,7 @@ const MyComponent: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
+  
   return (
     <TextField
       label="Enter your residential address"
