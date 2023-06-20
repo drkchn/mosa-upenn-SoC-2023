@@ -35,6 +35,7 @@ export function Home() {
         alignItems: "center",
         justifyContent: "center",
         height: "75vh",
+        marginTop: "0vh"
       }}
     >
       <h1>Welcome to Civics Central!</h1>
@@ -59,9 +60,9 @@ export function Home() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "left",
-          height: "10vh",
+          height: "5vh",
           width: "80%",
-          marginTop: "200px",
+          marginTop: "10vh",
         }}
       >
         <div style={{ textAlign: "left" }}>
