@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Box, Button, TextField, Stack, InputAdornment } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 const MyComponent: React.FC = () => {
   const [value, setValue] = useState<string>("");
+  const [placeholder, setPlaceholder] = useState<string>(
+    "220 S. 33rd St, Philadelphia, PA 19104"
+  );
+
+  const placeholders = [
+    "740 S. Magnolia Rd, Gastonia, NC 28052",
+    "9068 Saxon St, Wheaton, IL 60187",
+    "7696 N. Grand St, Buckeye, AZ 85326",
+  ];
+  let placeholderIndex = 0;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+      setPlaceholder(placeholders[placeholderIndex]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -14,7 +33,7 @@ const MyComponent: React.FC = () => {
       label="Enter your residential address"
       value={value}
       onChange={handleChange}
-      placeholder="220 S. 33rd St, Philadelphia, PA 19104"
+      placeholder={placeholder}
       sx={{ width: "800px" }}
       InputProps={{
         startAdornment: (
