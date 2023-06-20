@@ -35,7 +35,7 @@ export function Home() {
         alignItems: "center",
         justifyContent: "center",
         height: "75vh",
-        marginTop: "0vh"
+        marginTop: "0vh",
       }}
     >
       <h1>Welcome to Civics Central!</h1>
