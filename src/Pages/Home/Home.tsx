@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Stack } from "@mui/material";
-//import HomeIcon from "@mui/icons-material/Home";
+import { Box, Button, TextField, Stack, InputAdornment } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
 
 const MyComponent: React.FC = () => {
   const [value, setValue] = useState<string>("");
@@ -15,6 +15,13 @@ const MyComponent: React.FC = () => {
       onChange={handleChange}
       placeholder="123 Anywhere St, Anytown, CA 12345"
       sx={{ width: "800px" }}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <HomeIcon />
+          </InputAdornment>
+        ),
+      }}
     />
   );
 };
@@ -27,10 +34,10 @@ export function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "70vh",
+        height: "75vh",
       }}
     >
-      <div>
+
         <h1>Welcome to Civics Central!</h1>
         <h3>Enter your residential address and we'll take it from here!</h3>
 
@@ -48,7 +55,6 @@ export function Home() {
             </Button>
           </Box>
         </Stack>
-      </div>
     </Box>
   );
 }
