@@ -1,3 +1,8 @@
 export function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>Welcome to Civics Central!</h1>
+      <MyComponent />
+    </div>
+  )
 }
