@@ -34,7 +34,7 @@ const MyComponent: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
-  
+
   return (
     <TextField
       label="Enter your residential address"
