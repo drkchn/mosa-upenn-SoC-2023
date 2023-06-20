@@ -9,5 +9,15 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       pure: mode === "production" ? ["console.log"] : [],
     },
+    test: {
+      environment: "jsdom",
+      globals: true,
+      setupFiles: "./setup-tests.js",
+      coverage: {
+        reporter: ["text", "json", "html"],
+        all: true,
+        reportsDirectory: "./test-coverage",
+      },
+    },
   };
 });

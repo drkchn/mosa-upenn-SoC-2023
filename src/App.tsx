@@ -1,11 +1,11 @@
 import "./App.css";
-import { Home } from "./Pages/Home.tsx";
+import { Home } from "./Pages/Home/Home.tsx";
 import { Navbar } from "./components/navBar/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
-import { Page2 } from "./Pages/Page2.tsx";
-import { Example } from "./Pages/Example.tsx";
+import { Page2 } from "./Pages/Page2/Page2.tsx";
+import { Example } from "./Pages/Example/Example.tsx";
 import { Footer } from "./components/footer/Footer.tsx";
-import { WhyVote } from "./Pages/WhyVote.tsx";
+import { WhyVote } from "./Pages/WhyVote/WhyVote.tsx";
 
 function App() {
   return (
