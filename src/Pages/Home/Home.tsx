@@ -14,9 +14,9 @@ const MyComponent: React.FC = () => {
     "9068 Saxon St, Wheaton, IL 60187",
     "7696 N. Grand St, Buckeye, AZ 85326",
   ];
-  let placeholderIndex = 0;
 
   useEffect(() => {
+    let placeholderIndex = 0;
     const interval = setInterval(() => {
       placeholderIndex = (placeholderIndex + 1) % placeholders.length;
       setPlaceholder(placeholders[placeholderIndex]);
