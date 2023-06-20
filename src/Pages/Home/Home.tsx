@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Stack } from "@mui/material";
 
 const MyComponent: React.FC = () => {
   const [value, setValue] = useState<string>("");
@@ -31,17 +31,22 @@ export function Home() {
     >
       <div>
         <h1>Welcome to Civics Central!</h1>
-        <h2>Enter your residential address and we'll take it from here!</h2>
-        <MyComponent />
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            width: "225px",
-          }}
-        >
-          Find my elections info!
-        </Button>
+        <h3>Enter your residential address and we'll take it from here!</h3>
+
+        <Stack spacing={2}>
+          <MyComponent />
+          <Box sx={{ width: "800px", textAlign: "right" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                width: "225px",
+              }}
+            >
+              Find my elections info!
+            </Button>
+          </Box>
+        </Stack>
       </div>
     </Box>
   );
