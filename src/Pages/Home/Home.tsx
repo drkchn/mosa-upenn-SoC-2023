@@ -12,8 +12,8 @@ const MyComponent: React.FC = () => {
       label="Enter your residential address"
       value={value}
       onChange={handleChange}
-      placeholder="Enter your residential address"
-      fullWidth
+      placeholder="123 Anywhere St, Anytown, CA 12345"
+      sx={{width: "800px"}}
     />
   );
 };
