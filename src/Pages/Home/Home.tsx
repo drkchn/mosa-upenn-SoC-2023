@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Stack, InputAdornment } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
+import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 const MyComponent: React.FC = () => {
   const [value, setValue] = useState<string>("");
@@ -13,7 +14,7 @@ const MyComponent: React.FC = () => {
       label="Enter your residential address"
       value={value}
       onChange={handleChange}
-      placeholder="123 Anywhere St, Anytown, CA 12345"
+      placeholder="220 S. 33rd St, Philadelphia, PA 19104"
       sx={{ width: "800px" }}
       InputProps={{
         startAdornment: (
@@ -36,6 +37,7 @@ export function Home() {
         justifyContent: "center",
         height: "75vh",
         marginTop: "0vh",
+        bgcolor: "secondary.main",
       }}
     >
       <h1>Welcome to Civics Central!</h1>
@@ -47,8 +49,10 @@ export function Home() {
           <Button
             variant="contained"
             color="primary"
+            startIcon={<HowToVoteIcon />}
             sx={{
-              width: "225px",
+              width: "250px",
+              backgroundColor: "primary.light",
             }}
           >
             Find my elections info!
