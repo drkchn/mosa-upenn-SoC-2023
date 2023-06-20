@@ -61,7 +61,7 @@ export function Home() {
           justifyContent: "left",
           height: "10vh",
           width: "80%",
-          marginTop: "200px"
+          marginTop: "200px",
         }}
       >
         <div style={{ textAlign: "left" }}>
