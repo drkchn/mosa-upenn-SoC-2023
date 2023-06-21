@@ -9,3 +9,8 @@ expect.extend(matchers);
 afterEach(() => {
   cleanup();
 });
+
+// //jest.mock(...) is used to automatically mock the axios module.jest.mock('axios');
+// // Create an object of type of mocked Axios.
+// vitest.mock("axios");
+// export const mockedAxios = axios as jest.Mocked<typeof axios>;

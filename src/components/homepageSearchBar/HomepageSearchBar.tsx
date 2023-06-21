@@ -37,7 +37,7 @@ export const HomePageSearchBar: React.FC = () => {
   };
 
   const handleClick = () => {
-    console.log(`call api with ${value}`)
+    console.log(`call api with ${value}`);
   };
 
   return (
