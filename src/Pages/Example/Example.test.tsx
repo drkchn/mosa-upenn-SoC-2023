@@ -6,6 +6,9 @@ import axios, { AxiosResponse } from "axios";
 import { UserDataFactory } from "../../test_setup/testFactory.ts";
 
 vitest.mock("axios");
+//jest.mock(...) is used to automatically mock the axios module.jest.mock('axios');
+// Create an object of type of mocked Axios.
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe("Example", () => {
   const { getByText, findByTestId } = screen;
@@ -22,12 +25,24 @@ describe("Example", () => {
   it("Should make an api call when the button is clicked", async () => {
     // ================== Configuring axios mocked response =====================
 
-    //jest.mock(...) is used to automatically mock the axios module.jest.mock('axios');
-    // Create an object of type of mocked Axios.
-    const mockedAxios = axios as jest.Mocked<typeof axios>;
+    const user1 = UserDataFactory.build({
+      name: {
+        title: "Mr",
+        first: "John",
+        last: "Doe",
+      },
+    });
+    const user2 = UserDataFactory.build({
+      name: {
+        title: "Ms",
+        first: "Jane",
+        last: "Doe",
+      },
+    });
+
     const mockedResponse: AxiosResponse = {
       data: {
-        results: [UserDataFactory],
+        results: [user1, user2],
       },
       status: 200,
       statusText: "OK",
@@ -57,7 +72,8 @@ describe("Example", () => {
     // Expect the call to have been made
     expect(axios.get).toHaveBeenCalledTimes(1);
 
-    // Expect michael to be on the screen
-    expect(getByText("Michael"));
+    // Expect the users to be rendered to the screen
+    expect(getByText("John"));
+    expect(getByText("Jane"));
   });
 });
