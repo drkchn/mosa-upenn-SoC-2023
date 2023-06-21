@@ -2,7 +2,6 @@ import { Box, Button, Stack } from "@mui/material";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import { HomepageSearchBar } from "../../components/homepageSearchBar/HomepageSearchBar.tsx";
 
-
 export function Home() {
   return (
     <Box
