@@ -17,12 +17,19 @@ function App() {
       }}
     >
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/page2" element={<Page2 />} />
-        <Route path="/example" element={<Example />} />
-        <Route path="/whyvote" element={<WhyVote />} />
-      </Routes>
+      <Box
+        sx={{
+          backgroundColor: "secondary.main",
+          minHeight: "70vh",
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/page2" element={<Page2 />} />
+          <Route path="/example" element={<Example />} />
+          <Route path="/whyvote" element={<WhyVote />} />
+        </Routes>
+      </Box>
       <Footer />
     </Box>
   );

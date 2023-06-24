@@ -10,8 +10,6 @@ export function Home() {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "65vh",
-        // marginTop: "0vh",
-        backgroundColor: "secondary.main",
       }}
     >
       <Typography variant={"h3"}>Welcome to Civics Central!</Typography>

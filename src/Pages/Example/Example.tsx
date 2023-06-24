@@ -71,9 +71,6 @@ export function Example() {
   return (
     // MUI pallet can be accessed by the string notation as seen here
     <Box
-      sx={{
-        backgroundColor: "secondary.main",
-      }}
     >
       <Grid container>
         <Grid item sm={8} sx={{ border: "3px solid red", overflowX: "scroll" }}>
