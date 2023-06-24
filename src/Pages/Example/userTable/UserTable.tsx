@@ -19,11 +19,11 @@ const UserTable = ({ userData }: UserTableProps) => {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Image</TableCell>
-            <TableCell>First Name</TableCell>
-            <TableCell>Last Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
+            <TableCell align="center" >Image</TableCell>
+            <TableCell align="center" >First Name</TableCell>
+            <TableCell align="center" >Last Name</TableCell>
+            <TableCell align="center" >Email</TableCell>
+            <TableCell align="center" >Phone</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -33,15 +33,15 @@ const UserTable = ({ userData }: UserTableProps) => {
                   key={user.name.first}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <img src={user.picture.thumbnail} />
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" align="center">
                     {user.name.first}
                   </TableCell>
-                  <TableCell align="right">{user.name.last}</TableCell>
-                  <TableCell align="right">{user.email}</TableCell>
-                  <TableCell align="right">{user.phone}</TableCell>
+                  <TableCell align="center">{user.name.last}</TableCell>
+                  <TableCell align="center">{user.email}</TableCell>
+                  <TableCell align="center">{user.phone}</TableCell>
                 </TableRow>
               ))
             : null}
