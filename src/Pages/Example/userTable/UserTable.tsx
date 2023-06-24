@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { UserData } from "../../Interfaces.ts";
+import { UserData } from "../../../Interfaces.ts";
 
 interface UserTableProps {
   userData: UserData[];
@@ -16,14 +16,18 @@ interface UserTableProps {
 const UserTable = ({ userData }: UserTableProps) => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table
+        sx={{ minWidth: "100%", overflowX: "scroll" }}
+        size="small"
+        aria-label="a dense table"
+      >
         <TableHead>
           <TableRow>
-            <TableCell align="center" >Image</TableCell>
-            <TableCell align="center" >First Name</TableCell>
-            <TableCell align="center" >Last Name</TableCell>
-            <TableCell align="center" >Email</TableCell>
-            <TableCell align="center" >Phone</TableCell>
+            <TableCell align="center">Image</TableCell>
+            <TableCell align="center">First Name</TableCell>
+            <TableCell align="center">Last Name</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Phone</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -36,9 +40,7 @@ const UserTable = ({ userData }: UserTableProps) => {
                   <TableCell align="center">
                     <img src={user.picture.thumbnail} />
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
-                    {user.name.first}
-                  </TableCell>
+                  <TableCell align="center">{user.name.first}</TableCell>
                   <TableCell align="center">{user.name.last}</TableCell>
                   <TableCell align="center">{user.email}</TableCell>
                   <TableCell align="center">{user.phone}</TableCell>

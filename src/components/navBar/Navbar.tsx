@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 export function Navbar() {
   return (
     <AppBar position="static">
-      <Toolbar variant="regular" sx={{ justifyContent: "space-between" }}>
+      <Toolbar
+        variant="regular"
+        sx={{
+          justifyContent: "space-between",
+          // backgroundColor: "primary.main",
+        }}
+      >
         <Typography variant="h6" color="inherit" component="div">
           Basic Tool bar
         </Typography>

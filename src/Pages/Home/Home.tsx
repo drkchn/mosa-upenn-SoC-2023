@@ -9,8 +9,8 @@ export function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "75vh",
-        marginTop: "0vh",
+        minHeight: "65vh",
+        // marginTop: "0vh",
         backgroundColor: "secondary.main",
       }}
     >
@@ -19,17 +19,16 @@ export function Home() {
         Enter your residential address and we'll take it from here!
       </Typography>
 
-      <Box sx={{ marginTop: "5vh" }}>
-        <HomePageSearchBar />
-      </Box>
+      <HomePageSearchBar />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "left",
-          height: "5vh",
+          minHeight: "5vh",
           width: "80%",
           marginTop: "10vh",
+          marginBottom: { xs: "5vh", sm: "3vh", md: "0vh" },
           textAlign: "left",
         }}
       >

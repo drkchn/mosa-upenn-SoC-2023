@@ -6,10 +6,16 @@ import { Page2 } from "./Pages/Page2/Page2.tsx";
 import { Example } from "./Pages/Example/Example.tsx";
 import { Footer } from "./components/footer/Footer.tsx";
 import { WhyVote } from "./Pages/WhyVote/WhyVote.tsx";
+import { Box } from "@mui/material";
 
 function App() {
   return (
-    <>
+    <Box
+      sx={{
+        backgroundColor: "background.default",
+        padding: { xs: "0rem", sm: "2rem" },
+      }}
+    >
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,7 +24,7 @@ function App() {
         <Route path="/whyvote" element={<WhyVote />} />
       </Routes>
       <Footer />
-    </>
+    </Box>
   );
 }
 
