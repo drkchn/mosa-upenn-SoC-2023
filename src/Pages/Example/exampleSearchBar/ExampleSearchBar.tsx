@@ -2,29 +2,31 @@ import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 
 interface ExampleSearchBarProps {
+  listItems: string[];
   // eslint-disable-next-line @typescript-eslint/ban-types
   updateExampleList: Function;
 }
 
 export const ExampleSearchBar = ({
+  listItems,
   updateExampleList,
 }: ExampleSearchBarProps) => {
   const [currentValue, setCurrentValue] = useState<string>("");
 
   const addItemToList = () => {
-    const list = JSON.parse(localStorage.getItem("example-list") || "[]");
+    const newList = [...listItems];
 
     // Add the element to the beginning of the array
-    list.unshift(currentValue);
-    console.log(list);
+    newList.unshift(currentValue);
+    console.log(newList);
 
     // passes new list to the parent component
-    updateExampleList(list);
+    updateExampleList(newList);
     // Reset the search bar value
     setCurrentValue("");
 
     // Add it to the local storage
-    localStorage.setItem("example-list", JSON.stringify(list));
+    localStorage.setItem("example-list", JSON.stringify(newList));
   };
 
   return (

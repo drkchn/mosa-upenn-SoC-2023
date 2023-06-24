@@ -3,7 +3,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import { useEffect } from "react";
 import { ListItemButton } from "@mui/material";
 
 interface exampleListProps {
@@ -16,23 +15,26 @@ export const ExampleList = ({
   listItems,
   updateExampleList,
 }: exampleListProps) => {
-  useEffect(() => {
-    console.log(listItems);
-  }, [listItems]);
-
+  /**
+   * Utilty method for removing items
+   * @param strIndex
+   */
   const removeListItem = (strIndex: string) => {
+    // Get the index of the element to remove from the passed in string
     const index = parseInt(strIndex);
-    const list = JSON.parse(localStorage.getItem("example-list") || "[]");
 
-    // Add the element to the beginning of the array
-    list.splice(index, 1);
-    console.log(list);
+    // Make a copy of the state as not to mutate it in this component
+    const newLst = [...listItems];
 
-    // passes new list to the parent component
-    updateExampleList(list);
+    // remove the element from the list
+    newLst.splice(index, 1);
+    console.log(newLst);
 
-    // Add it to the local storage
-    localStorage.setItem("example-list", JSON.stringify(list));
+    // passes new list to the parent component to update the state
+    updateExampleList(newLst);
+
+    // Update the local storage with the new list value
+    localStorage.setItem("example-list", JSON.stringify(newLst));
   };
 
   return (
@@ -40,7 +42,14 @@ export const ExampleList = ({
       <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
         Test List
       </Typography>
-      <List sx={{ width: "80%", margin: "auto" }}>
+      <List
+        sx={{
+          width: "80%",
+          margin: "auto",
+          maxHeight: "400px",
+          overflowY: "scroll",
+        }}
+      >
         {listItems.map((item, index) => {
           console.log(item, index);
           return (
@@ -51,6 +60,7 @@ export const ExampleList = ({
               sx={{ backgroundColor: "primary.light", color: "text.primary" }}
             >
               <ListItemButton
+                // Assign a data-idx to the list item button so we know which index is clicked on
                 data-idx={index}
                 onClick={(e) => {
                   removeListItem(e.currentTarget.dataset.idx!);
