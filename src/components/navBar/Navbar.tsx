@@ -9,7 +9,7 @@ interface navBarProps {
     toggleColorMode: () => void;
   };
 }
-export function Navbar({mode, setMode, colorMode }: navBarProps) {
+export function Navbar({ mode, setMode, colorMode }: navBarProps) {
   return (
     <AppBar position="static">
       <Toolbar

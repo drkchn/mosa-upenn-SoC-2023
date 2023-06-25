@@ -16,6 +16,7 @@ import {
 import React from "react";
 import { getDesignTokens } from "./theme.ts";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 function App() {
   const [mode, setMode] = React.useState<PaletteMode>("light");
