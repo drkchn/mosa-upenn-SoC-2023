@@ -32,7 +32,8 @@ export function Navbar({ mode, setMode }: navBarProps) {
             edge="start"
             color="inherit"
             aria-label="menu"
-            component={Link} to={"/"}
+            component={Link}
+            to={"/"}
           >
             <HowToVoteIcon />
           </IconButton>
@@ -40,17 +41,17 @@ export function Navbar({ mode, setMode }: navBarProps) {
             Civics Central
           </Typography>
         </Box>
-        <Button component={Link} to={"/"} color="inherit">
+        <Button variant="outlined" component={Link} to={"/"} color="inherit">
           Home
         </Button>
-        <Button component={Link} to={"/page2"} color="inherit">
-          Page 2
+        <Button variant="outlined" component={Link} to={"/page2"} color="inherit">
+          Why Vote?
         </Button>
-        <Button component={Link} to={"/example"} color="inherit">
+        <Button variant="outlined"component={Link} to={"/example"} color="inherit">
           Example
         </Button>
-        <Button component={Link} to={"/whyvote"} color="inherit">
-          Why Vote
+        <Button variant="outlined" component={Link} to={"/whyvote"} color="inherit">
+          Empty Page - Maybe something new?
         </Button>
         <ThemeToggle mode={mode} setMode={setMode} />
       </Toolbar>
