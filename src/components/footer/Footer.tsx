@@ -1,5 +1,6 @@
 import { AppBar, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@mui/material/Link";
 
 export function Footer() {
   return (
@@ -27,13 +28,36 @@ export function Footer() {
             marginTop: "10px",
           }}
         >
-          <Link to={"/"}>Home</Link>
+          <Link color="white" underline="hover" component={RouterLink} to={"/"}>
+            Home
+          </Link>
           <Typography sx={{ marginBottom: "5px" }}></Typography>
-          <Link to={"/page2"}>Why Vote?</Link>
+          <Link
+            color="white"
+            underline="hover"
+            component={RouterLink}
+            to={"/page2"}
+          >
+            Why Vote?
+          </Link>
           <Typography sx={{ marginBottom: "5px" }}></Typography>
-          <Link to={"/example"}>Example</Link>
+          <Link
+            color="white"
+            underline="hover"
+            component={RouterLink}
+            to={"/example"}
+          >
+            Example
+          </Link>
           <Typography sx={{ marginBottom: "5px" }}></Typography>
-          <Link to={"/example"}>Contact Us</Link>
+          <Link
+            color="white"
+            underline="hover"
+            component={RouterLink}
+            to={"/example"}
+          >
+            Contact Us
+          </Link>
         </Box>
       </Box>
     </AppBar>
