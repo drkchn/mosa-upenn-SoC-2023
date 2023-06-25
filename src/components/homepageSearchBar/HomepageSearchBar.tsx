@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, InputAdornment, Box, Button, Stack } from "@mui/material";
+import { TextField, InputAdornment, Box, Button } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
@@ -41,13 +41,13 @@ export const HomePageSearchBar: React.FC = () => {
   };
 
   return (
-    <Stack spacing={2}>
+    <Box sx={{ width: "80%", marginTop: "50px" }}>
       <TextField
         label="Enter your residential address"
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        sx={{ width: "800px" }}
+        fullWidth
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -56,20 +56,27 @@ export const HomePageSearchBar: React.FC = () => {
           ),
         }}
       />
-      <Box sx={{ width: "800px", textAlign: "right" }}>
+      <Box
+        sx={{
+          marginTop: "20px",
+          textAlign: { xs: "center", sm: "right" },
+        }}
+      >
         <Button
           variant="contained"
+          sx={{
+            width: { xs: "100%", sm: "auto" },
+            textAlign: { xs: "center", sm: "right" },
+            backgroundColor: "primary.light",
+            maxWidth: "250px",
+          }}
           color="primary"
           startIcon={<HowToVoteIcon />}
-          sx={{
-            width: "250px",
-            backgroundColor: "primary.light",
-          }}
           onClick={handleClick}
         >
           Find my elections info!
         </Button>
       </Box>
-    </Stack>
+    </Box>
   );
 };

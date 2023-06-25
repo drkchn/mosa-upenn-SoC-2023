@@ -8,7 +8,6 @@ export function Page2() {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "600px",
-        backgroundColor: "lightblue",
       }}
     >
       <Typography variant="h2">The Importance of Voting</Typography>
