@@ -1,7 +1,15 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, PaletteMode, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
+interface navBarProps {
+  mode: PaletteMode;
+  setMode: (mode: PaletteMode) => void;
 
-export function Navbar() {
+  colorMode: {
+    toggleColorMode: () => void;
+  };
+}
+export function Navbar({mode, setMode, colorMode }: navBarProps) {
   return (
     <AppBar position="static">
       <Toolbar
@@ -19,6 +27,7 @@ export function Navbar() {
         <Link to={"/page2"}>page2</Link>
         <Link to={"/example"}>example</Link>
         <Link to={"/whyvote"}>whyvote</Link>
+        <ThemeToggle mode={mode} setMode={setMode} colorMode={colorMode} />
       </Toolbar>
     </AppBar>
   );
