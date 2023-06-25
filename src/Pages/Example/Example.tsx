@@ -63,7 +63,7 @@ export function Example() {
     setListItems(exampleList);
   };
 
-  // Excample of how to make an api call
+  // Example of how to make an api call
   const getUsers = async () => {
     axios
       .get("https://randomuser.me/api/?results=5")

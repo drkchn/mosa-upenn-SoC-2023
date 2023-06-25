@@ -6,7 +6,7 @@ echo "Checking if push to $protected_branch branch is allowed..."
 
 set -e # exit if the script encounters an error
 
-npm run lint:fix
+npm run lint
 
 while read local_ref local_sha remote_ref remote_sha
 do
