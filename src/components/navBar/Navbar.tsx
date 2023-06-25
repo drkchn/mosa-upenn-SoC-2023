@@ -66,7 +66,7 @@ export function Navbar({ mode, setMode }: navBarProps) {
           to={"/whyvote"}
           color="inherit"
         >
-          Empty Page - Maybe something new?
+          Empty Page
         </Button>
         <ThemeToggle mode={mode} setMode={setMode} />
       </Toolbar>
