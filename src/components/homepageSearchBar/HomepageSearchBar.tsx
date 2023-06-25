@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TextField, InputAdornment, Box, Button } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
+import axios from "axios";
+import { RepresentativeDataResponse } from "../../Interfaces";
 
 const placeholders = [
   "740 S. Magnolia Rd, Gastonia, NC 28052",
@@ -21,6 +23,9 @@ export const HomePageSearchBar: React.FC = () => {
     "220 S. 33rd St, Philadelphia, PA 19104"
   );
 
+  const [representativeDataResponse, setRepresentativeDataResponse] =
+    useState<RepresentativeDataResponse>();
+
   useEffect(() => {
     let placeholderIndex = 0;
     const interval = setInterval(() => {
@@ -31,13 +36,40 @@ export const HomePageSearchBar: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    console.log(representativeDataResponse);
+  }, [representativeDataResponse]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setValue(event.target.value);
   };
 
   const handleClick = () => {
-    console.log(`call api with ${value}`);
+    const address = encodeAddress(value);
+    console.log(address);
+    quereyRepresentativeAPI(address);
+  };
+
+  const encodeAddress = (value: string) => {
+    const encodedAddress = value.trim().replaceAll(" ", "%20");
+    return encodedAddress;
+  };
+
+  const quereyRepresentativeAPI = (address: string) => {
+    axios
+      .get(
+        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=${address}&includeOffices=true&key=${
+          import.meta.env.VITE_CIVICS_API_KEY
+        }`
+      )
+      .then((res) => {
+        console.log(res);
+        //console.log(res.data);
+        setRepresentativeDataResponse(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
