@@ -1,7 +1,12 @@
-import { AppBar, Button, PaletteMode, Toolbar, Typography, IconButton } from "@mui/material";
+import {
+  AppBar,
+  Button,
+  PaletteMode,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
-import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 interface navBarProps {
   mode: PaletteMode;
@@ -21,10 +26,18 @@ export function Navbar({ mode, setMode }: navBarProps) {
         <Typography variant="h6" color="inherit" component="h1">
           Civics Tool
         </Typography>
-        <Button component={Link} to={"/"} color="inherit">Home</Button>
-        <Button component={Link} to={"/page2"} color="inherit">Page 2</Button>
-        <Button component={Link} to={"/example"} color="inherit">Example</Button>
-        <Button component={Link} to={"/whyvote"} color="inherit">Why Vote</Button>
+        <Button component={Link} to={"/"} color="inherit">
+          Home
+        </Button>
+        <Button component={Link} to={"/page2"} color="inherit">
+          Page 2
+        </Button>
+        <Button component={Link} to={"/example"} color="inherit">
+          Example
+        </Button>
+        <Button component={Link} to={"/whyvote"} color="inherit">
+          Why Vote
+        </Button>
         <ThemeToggle mode={mode} setMode={setMode} />
       </Toolbar>
     </AppBar>
