@@ -44,13 +44,28 @@ export function Navbar({ mode, setMode }: navBarProps) {
         <Button variant="outlined" component={Link} to={"/"} color="inherit">
           Home
         </Button>
-        <Button variant="outlined" component={Link} to={"/page2"} color="inherit">
+        <Button
+          variant="outlined"
+          component={Link}
+          to={"/page2"}
+          color="inherit"
+        >
           Why Vote?
         </Button>
-        <Button variant="outlined"component={Link} to={"/example"} color="inherit">
+        <Button
+          variant="outlined"
+          component={Link}
+          to={"/example"}
+          color="inherit"
+        >
           Example
         </Button>
-        <Button variant="outlined" component={Link} to={"/whyvote"} color="inherit">
+        <Button
+          variant="outlined"
+          component={Link}
+          to={"/whyvote"}
+          color="inherit"
+        >
           Empty Page - Maybe something new?
         </Button>
         <ThemeToggle mode={mode} setMode={setMode} />
