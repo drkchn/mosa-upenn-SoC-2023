@@ -1,4 +1,13 @@
+import { UserData } from "../Interfaces.ts";
+import { Factory } from "rosie";
+
 export const UserDataFactory = {
+  build: (overrides = {} as UserData | NonNullable<unknown>): UserData => {
+    return Factory.build("UserDataFactory", overrides);
+  },
+};
+
+Factory.define<UserData>("UserDataFactory").attrs({
   gender: "male",
   name: {
     title: "Mr",
@@ -17,4 +26,4 @@ export const UserDataFactory = {
     medium: "123123123",
     thumbnail: "123123123",
   },
-};
+});
