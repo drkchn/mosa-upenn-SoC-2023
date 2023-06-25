@@ -4,12 +4,8 @@ import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 interface navBarProps {
   mode: PaletteMode;
   setMode: (mode: PaletteMode) => void;
-
-  colorMode: {
-    toggleColorMode: () => void;
-  };
 }
-export function Navbar({ mode, setMode, colorMode }: navBarProps) {
+export function Navbar({ mode, setMode }: navBarProps) {
   return (
     <AppBar position="static">
       <Toolbar
@@ -27,7 +23,7 @@ export function Navbar({ mode, setMode, colorMode }: navBarProps) {
         <Link to={"/page2"}>page2</Link>
         <Link to={"/example"}>example</Link>
         <Link to={"/whyvote"}>whyvote</Link>
-        <ThemeToggle mode={mode} setMode={setMode} colorMode={colorMode} />
+        <ThemeToggle mode={mode} setMode={setMode} />
       </Toolbar>
     </AppBar>
   );

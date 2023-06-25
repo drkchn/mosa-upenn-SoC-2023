@@ -5,14 +5,10 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 interface themeToggleProps {
   mode: PaletteMode;
-  colorMode: {
-    toggleColorMode: () => void;
-  };
-
   setMode: (mode: PaletteMode) => void;
 }
 
-export const ThemeToggle = ({ mode, setMode, colorMode }: themeToggleProps) => {
+export const ThemeToggle = ({ mode, setMode }: themeToggleProps) => {
   useEffect(() => {
     if (localStorage.getItem("mode") === null) {
       localStorage.setItem("mode", "light");
@@ -21,12 +17,16 @@ export const ThemeToggle = ({ mode, setMode, colorMode }: themeToggleProps) => {
     setMode(mode);
   }, [setMode]);
 
+  const toggleColorMode = () => {
+    setMode(mode == "light" ? "dark" : "light");
+
+    localStorage.setItem(
+      "mode",
+      localStorage.getItem("mode") === "light" ? "dark" : "light"
+    );
+  };
   return (
-    <IconButton
-      sx={{ ml: 1 }}
-      onClick={colorMode.toggleColorMode}
-      color="inherit"
-    >
+    <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
       {mode == "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
     </IconButton>
   );

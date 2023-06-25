@@ -16,35 +16,20 @@ import {
 import React from "react";
 import { getDesignTokens } from "./theme.ts";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+// Create a React context, this will make the value held here availble to all of its children
+const ColorModeContext = React.createContext({});
 function App() {
   const [mode, setMode] = React.useState<PaletteMode>(
     (localStorage.getItem("mode") as PaletteMode) || "light"
-  );
-
-  const colorMode = React.useMemo(
-    () => ({
-      // The dark mode switch would invoke this method
-      toggleColorMode: () => {
-        setMode((prevMode: PaletteMode) =>
-          prevMode === "light" ? "dark" : "light"
-        );
-        localStorage.setItem(
-          "mode",
-          localStorage.getItem("mode") === "light" ? "dark" : "light"
-        );
-      },
-    }),
-    []
   );
 
   // regenerate the theme when the mode changes
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
-    // ColorModeProvider makes the color mode available down the React tree thanks to React context.
-    <ColorModeContext.Provider value={colorMode}>
+    // ColorModeContext.Provider makes the color mode available down the React tree thanks to React context.
+    // Mui will then use this to set the correct theme of each component in the tree.
+    <ColorModeContext.Provider value={mode}>
       {/*Theme provider provides customTheme access to the App and all of its children*/}
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon and also makes the theme take effect on background colors */}
@@ -55,7 +40,7 @@ function App() {
             padding: { xs: "0rem", sm: "2rem" },
           }}
         >
-          <Navbar mode={mode} setMode={setMode} colorMode={colorMode} />
+          <Navbar mode={mode} setMode={setMode} />
           <Box
             sx={{
               minHeight: "70vh",
