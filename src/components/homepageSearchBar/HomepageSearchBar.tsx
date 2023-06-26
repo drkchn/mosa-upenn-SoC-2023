@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { TextField, InputAdornment, Box, Button } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  Box,
+  Button,
+  Snackbar,
+  Alert,
+} from "@mui/material";
+import Fade from "@mui/material/Fade";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import axios from "axios";
@@ -18,14 +26,21 @@ const placeholders = [
 ];
 
 export const HomePageSearchBar: React.FC = () => {
-  const [value, setValue] = useState<string>("");
+  // =================== React States ===================
+  const [searchBarValue, setSearchBarValue] = useState<string>("");
   const [placeholder, setPlaceholder] = useState<string>(
     "220 S. 33rd St, Philadelphia, PA 19104"
   );
+  const [snackBarIsOpen, setSnackBarIsOpen] = useState<boolean>(false);
+  const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(false);
+  const [googleApiErrorMessage, setGoogleApiErrorMessage] =
+    useState<string>("");
 
   const [representativeDataResponse, setRepresentativeDataResponse] =
     useState<RepresentativeDataResponse>();
+  // =================== React States ===================
 
+  // =================== React Hooks ===================
   useEffect(() => {
     let placeholderIndex = 0;
     const interval = setInterval(() => {
@@ -40,13 +55,16 @@ export const HomePageSearchBar: React.FC = () => {
     console.log(representativeDataResponse);
   }, [representativeDataResponse]);
 
+  // =================== React Hooks ===================
+
+  // =================== Helper Functions ==============
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setSearchBarValue(event.target.value);
   };
 
   const handleClick = () => {
-    const address = encodeAddress(value);
-    console.log(address);
+    const address = encodeAddress(searchBarValue);
     quereyRepresentativeAPI(address);
   };
 
@@ -56,6 +74,7 @@ export const HomePageSearchBar: React.FC = () => {
   };
 
   const quereyRepresentativeAPI = (address: string) => {
+    setButtonIsDisabled(true);
     axios
       .get(
         `https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=${address}&includeOffices=true&key=${
@@ -64,19 +83,28 @@ export const HomePageSearchBar: React.FC = () => {
       )
       .then((res) => {
         console.log(res);
-        //console.log(res.data);
         setRepresentativeDataResponse(res.data);
       })
       .catch((err) => {
         console.log(err);
+        setGoogleApiErrorMessage(err.response.data.error.message);
+        setSnackBarIsOpen(true);
+      })
+      .finally(() => {
+        setButtonIsDisabled(false);
       });
   };
 
+  const closeSnackBar = () => {
+    setSnackBarIsOpen(false);
+  };
+
+  // =================== Helper Functions ==============
   return (
     <Box sx={{ width: "80%", marginTop: "50px" }}>
       <TextField
         label="Enter your residential address"
-        value={value}
+        value={searchBarValue}
         onChange={handleChange}
         placeholder={placeholder}
         fullWidth
@@ -105,10 +133,23 @@ export const HomePageSearchBar: React.FC = () => {
           color="primary"
           startIcon={<HowToVoteIcon />}
           onClick={handleClick}
+          disabled={buttonIsDisabled || searchBarValue.length === 0}
         >
           Find my elections info!
         </Button>
       </Box>
+
+      <Snackbar
+        open={snackBarIsOpen}
+        autoHideDuration={6000}
+        onClose={closeSnackBar}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        TransitionComponent={Fade}
+      >
+        <Alert onClose={closeSnackBar} severity="error" sx={{ width: "100%" }}>
+          {googleApiErrorMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

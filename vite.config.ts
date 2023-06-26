@@ -5,6 +5,9 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig(({ mode }) => {
   return {
+    server: {
+      port: 4049,
+    },
     plugins: [react()],
     esbuild: {
       pure: mode === "production" ? ["console.log"] : [],
