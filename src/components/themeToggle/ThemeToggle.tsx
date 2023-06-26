@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { IconButton, PaletteMode } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useColorMode, useSetColorMode } from "../../context/customHooks.ts";
 
-interface themeToggleProps {
-  mode: PaletteMode;
-  setMode: (mode: PaletteMode) => void;
-}
+export const ThemeToggle = () => {
+  const mode = useColorMode();
 
-export const ThemeToggle = ({ mode, setMode }: themeToggleProps) => {
+  // TODO - figure out what type this should be
+  const setMode: any = useSetColorMode();
+
   useEffect(() => {
     if (localStorage.getItem("mode") === null) {
       localStorage.setItem("mode", "light");

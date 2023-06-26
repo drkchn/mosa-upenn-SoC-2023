@@ -1,7 +1,6 @@
 import {
   AppBar,
   Button,
-  PaletteMode,
   Toolbar,
   Typography,
   IconButton,
@@ -11,11 +10,7 @@ import { Link } from "react-router-dom";
 import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
-interface navBarProps {
-  mode: PaletteMode;
-  setMode: (mode: PaletteMode) => void;
-}
-export function Navbar({ mode, setMode }: navBarProps) {
+export function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar
@@ -68,7 +63,7 @@ export function Navbar({ mode, setMode }: navBarProps) {
         >
           Empty Page
         </Button>
-        <ThemeToggle mode={mode} setMode={setMode} />
+        <ThemeToggle />
       </Toolbar>
     </AppBar>
   );
