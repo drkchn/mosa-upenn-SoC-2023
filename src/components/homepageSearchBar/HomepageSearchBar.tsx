@@ -11,7 +11,10 @@ import Fade from "@mui/material/Fade";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import axios from "axios";
-import { RepresentativeDataResponse } from "../../Interfaces";
+import {
+  useRepresentativeDataResponse,
+  useSetRepresentativeDataResponse,
+} from "../../context/customHooks.ts";
 
 const placeholders = [
   "740 S. Magnolia Rd, Gastonia, NC 28052",
@@ -36,11 +39,15 @@ export const HomePageSearchBar: React.FC = () => {
   const [googleApiErrorMessage, setGoogleApiErrorMessage] =
     useState<string>("");
 
-  const [representativeDataResponse, setRepresentativeDataResponse] =
-    useState<RepresentativeDataResponse>();
   // =================== React States ===================
 
   // =================== React Hooks ===================
+
+  const representativeDataResponse = useRepresentativeDataResponse();
+
+  // TODO - figure out what type this should be
+  const setRepresentativeDataResponse: any = useSetRepresentativeDataResponse();
+
   useEffect(() => {
     let placeholderIndex = 0;
     const interval = setInterval(() => {
