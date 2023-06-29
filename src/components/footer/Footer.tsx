@@ -36,7 +36,7 @@ export function Footer() {
             color="white"
             underline="hover"
             component={RouterLink}
-            to={"/page2"}
+            to={"/whyvote"}
           >
             Why Vote?
           </Link>
@@ -54,7 +54,7 @@ export function Footer() {
             color="white"
             underline="hover"
             component={RouterLink}
-            to={"/example"}
+            to={"/contactus"}
           >
             Contact Us
           </Link>
