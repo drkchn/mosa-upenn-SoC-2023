@@ -42,7 +42,7 @@ export function Navbar() {
         <Button
           variant="outlined"
           component={Link}
-          to={"/page2"}
+          to={"/whyvote"}
           color="inherit"
         >
           Why Vote?
@@ -58,10 +58,10 @@ export function Navbar() {
         <Button
           variant="outlined"
           component={Link}
-          to={"/whyvote"}
+          to={"/contactus"}
           color="inherit"
         >
-          Empty Page
+          Contact Us
         </Button>
         <ThemeToggle />
       </Toolbar>
