@@ -15,7 +15,7 @@ function App() {
       <Box
         sx={{
           backgroundColor: "background.default",
-          padding: { xs: "0rem", sm: "2rem" },
+          padding: "0rem",
         }}
       >
         <Navbar />

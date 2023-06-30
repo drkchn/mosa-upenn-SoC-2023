@@ -15,6 +15,7 @@ import {
   useRepresentativeDataResponse,
   useSetRepresentativeDataResponse,
 } from "../../context/customHooks.ts";
+import { useNavigate } from "react-router-dom";
 
 const placeholders = [
   "740 S. Magnolia Rd, Gastonia, NC 28052",
@@ -43,7 +44,12 @@ export const HomePageSearchBar: React.FC = () => {
 
   // =================== React Hooks ===================
 
+  useEffect(() => {
+    console.log(searchBarValue);
+  }, [searchBarValue]);
+
   const representativeDataResponse = useRepresentativeDataResponse();
+  const navigate = useNavigate();
 
   // TODO - figure out what type this should be
   const setRepresentativeDataResponse: any = useSetRepresentativeDataResponse();
@@ -91,6 +97,7 @@ export const HomePageSearchBar: React.FC = () => {
       .then((res) => {
         console.log(res);
         setRepresentativeDataResponse(res.data);
+        navigate("/example");
       })
       .catch((err) => {
         console.log(err);
@@ -140,7 +147,7 @@ export const HomePageSearchBar: React.FC = () => {
           color="primary"
           startIcon={<HowToVoteIcon />}
           onClick={handleClick}
-          disabled={buttonIsDisabled || searchBarValue.length === 0}
+          disabled={buttonIsDisabled || searchBarValue.trim().length === 0}
         >
           Find my elections info!
         </Button>

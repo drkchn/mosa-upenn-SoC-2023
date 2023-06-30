@@ -5,6 +5,8 @@ import {
   SetRepresentativeDataResponseContext,
 } from "./RepresentativeDataContext.tsx";
 
+// This is a utility file for custom hooks
+
 // ==================== Custom React Hooks ====================
 // 1 custom hook per context in order to expose it to consumer component
 export const useColorMode = () => {
