@@ -109,9 +109,6 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         console.log(res);
         setRepresentativeDataResponse(res.data);
         setRepresentativeCallSuccessful(true);
-
-        // Call the query for elections API after the representative call is successful
-        queryAvailableElectionsAPI();
       })
       .catch((err) => {
         // Catch any errors in the api chain
@@ -120,7 +117,8 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         setSnackBarIsOpen(true);
       })
       .finally(() => {
-        setButtonIsDisabled(false);
+        // Call the query for elections API after the representative call is successful
+        queryAvailableElectionsAPI();
       });
   };
 
@@ -135,6 +133,16 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         // Setting the state on successful response
         setAvailableElections(res.data);
         setElectionCallSuccessful(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (!snackBarIsOpen) {
+          setGoogleApiErrorMessage(err.response.data.error.message);
+          setSnackBarIsOpen(true);
+        }
+      })
+      .finally(() => {
+        setButtonIsDisabled(false);
       });
   };
 
