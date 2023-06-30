@@ -6,12 +6,13 @@ import { WhyVote } from "./Pages/WhyVote/WhyVote.tsx";
 import { Example } from "./Pages/Example/Example.tsx";
 import { ContactUs } from "./Pages/ContactUs/ContactUs.tsx";
 import { Box } from "@mui/material";
-import { GlobalContext } from "./context/GlobalContext.tsx";
+import { GlobalContextWrapper } from "./context/GlobalContextWrapper.tsx";
 import { Footer } from "./components/footer/Footer.tsx";
+import { CivicInfo } from "./Pages/CivicInfo/CivicInfo.tsx";
 
 function App() {
   return (
-    <GlobalContext>
+    <GlobalContextWrapper>
       <Box
         sx={{
           backgroundColor: "background.default",
@@ -29,11 +30,13 @@ function App() {
             <Route path="/whyvote" element={<WhyVote />} />
             <Route path="/example" element={<Example />} />
             <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/civicInformation" element={<CivicInfo />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </Box>
         <Footer />
       </Box>
-    </GlobalContext>
+    </GlobalContextWrapper>
   );
 }
 

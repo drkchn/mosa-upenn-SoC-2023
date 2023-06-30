@@ -1,14 +1,22 @@
-import { ColorModeContext, SetColorModeContext } from "./GlobalContext.tsx";
 import React from "react";
 import {
-  RepresentativeDataResponseContext,
-  SetRepresentativeDataResponseContext,
-} from "./RepresentativeDataContext.tsx";
+  RepresentativeDataContext,
+  SetRepresentativeDataContext,
+} from "./contextWrappers/RepresentativeDataContextWrapper.tsx";
+import {
+  AvailableElectionsContext,
+  SetAvailableElectionsContext,
+} from "./contextWrappers/AvailableElectionsContext.tsx";
+import {
+  ColorModeContext,
+  SetColorModeContext,
+} from "./contextWrappers/ThemeContextWrapper.tsx";
 
 // This is a utility file for custom hooks
 
-// ==================== Custom React Hooks ====================
 // 1 custom hook per context in order to expose it to consumer component
+
+// ==================== Theme ====================
 export const useColorMode = () => {
   return React.useContext(ColorModeContext);
 };
@@ -16,11 +24,25 @@ export const useColorMode = () => {
 export const useSetColorMode = () => {
   return React.useContext(SetColorModeContext);
 };
+// ==================== Theme ====================
 
-export const useRepresentativeDataResponse = () => {
-  return React.useContext(RepresentativeDataResponseContext);
+// ============= Representative Data =============
+
+export const useRepresentativeDataContext = () => {
+  return React.useContext(RepresentativeDataContext);
 };
-export const useSetRepresentativeDataResponse = () => {
-  return React.useContext(SetRepresentativeDataResponseContext);
+export const useSetRepresentativeDataContext = () => {
+  return React.useContext(SetRepresentativeDataContext);
 };
-// ==================== Custom React Hooks ====================
+
+// ============= Representative Data =============
+
+// ============= Available Elections =============
+
+export const useAvailableElectionsContext = () => {
+  return React.useContext(AvailableElectionsContext);
+};
+export const useSetAvailableElectionsContext = () => {
+  return React.useContext(SetAvailableElectionsContext);
+};
+// ============= Available Elections =============

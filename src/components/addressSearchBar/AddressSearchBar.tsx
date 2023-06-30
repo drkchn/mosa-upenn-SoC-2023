@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  TextField,
-  InputAdornment,
+  Alert,
   Box,
   Button,
+  InputAdornment,
   Snackbar,
-  Alert,
+  TextField,
 } from "@mui/material";
 import Fade from "@mui/material/Fade";
 import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import axios from "axios";
 import {
-  useRepresentativeDataResponse,
-  useSetRepresentativeDataResponse,
+  useSetAvailableElectionsContext,
+  useSetRepresentativeDataContext,
 } from "../../context/customHooks.ts";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,11 @@ const placeholders = [
   "220 S. 33rd St, Philadelphia, PA 19104",
 ];
 
-export const HomePageSearchBar: React.FC = () => {
+interface AddressSearchBarProps {
+  isHomePage: boolean;
+}
+
+export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
   // =================== React States ===================
   const [searchBarValue, setSearchBarValue] = useState<string>("");
   const [placeholder, setPlaceholder] = useState<string>(
@@ -40,20 +44,23 @@ export const HomePageSearchBar: React.FC = () => {
   const [googleApiErrorMessage, setGoogleApiErrorMessage] =
     useState<string>("");
 
+  const [representativeCallSuccessful, setRepresentativeCallSuccessful] =
+    useState<boolean>(false);
+  const [electionCallSuccessful, setElectionCallSuccessful] =
+    useState<boolean>(false);
+
   // =================== React States ===================
 
   // =================== React Hooks ===================
 
-  useEffect(() => {
-    console.log(searchBarValue);
-  }, [searchBarValue]);
-
-  const representativeDataResponse = useRepresentativeDataResponse();
+  // Allows us to navigate to a new url
   const navigate = useNavigate();
 
-  // TODO - figure out what type this should be
-  const setRepresentativeDataResponse: any = useSetRepresentativeDataResponse();
+  // Getting access to setters from context
+  const setRepresentativeDataResponse: any = useSetRepresentativeDataContext();
+  const setAvailableElections: any = useSetAvailableElectionsContext();
 
+  // For changing address
   useEffect(() => {
     let placeholderIndex = 0;
     const interval = setInterval(() => {
@@ -64,29 +71,33 @@ export const HomePageSearchBar: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Only navigate if both our calls were successful and we are still on the home page
   useEffect(() => {
-    console.log(representativeDataResponse);
-  }, [representativeDataResponse]);
+    if (representativeCallSuccessful && electionCallSuccessful && isHomePage) {
+      navigate("/civicInformation");
+    }
+  });
 
   // =================== React Hooks ===================
 
   // =================== Helper Functions ==============
 
+  // Updates the state of the search bar value when typing
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBarValue(event.target.value);
   };
 
   const handleClick = () => {
     const address = encodeAddress(searchBarValue);
-    quereyRepresentativeAPI(address);
+    queryRepresentativeAPI(address);
   };
 
+  // Have to change spaces in the entered address to %20 to send over and http call
   const encodeAddress = (value: string) => {
-    const encodedAddress = value.trim().replaceAll(" ", "%20");
-    return encodedAddress;
+    return value.trim().replaceAll(" ", "%20");
   };
 
-  const quereyRepresentativeAPI = (address: string) => {
+  const queryRepresentativeAPI = (address: string) => {
     setButtonIsDisabled(true);
     axios
       .get(
@@ -97,9 +108,13 @@ export const HomePageSearchBar: React.FC = () => {
       .then((res) => {
         console.log(res);
         setRepresentativeDataResponse(res.data);
-        navigate("/example");
+        setRepresentativeCallSuccessful(true);
+
+        // Call the query for elections API after the representative call is successful
+        queryAvailableElectionsAPI();
       })
       .catch((err) => {
+        // Catch any errors in the api chain
         console.log(err);
         setGoogleApiErrorMessage(err.response.data.error.message);
         setSnackBarIsOpen(true);
@@ -109,13 +124,47 @@ export const HomePageSearchBar: React.FC = () => {
       });
   };
 
+  const queryAvailableElectionsAPI = () => {
+    axios
+      .get(
+        `https://www.googleapis.com/civicinfo/v2/elections?key=${
+          import.meta.env.VITE_CIVICS_API_KEY
+        }`
+      )
+      .then((res) => {
+        // Setting the state on successful response
+        setAvailableElections(res.data);
+        setElectionCallSuccessful(true);
+      });
+  };
+
   const closeSnackBar = () => {
     setSnackBarIsOpen(false);
   };
 
   // =================== Helper Functions ==============
+
+  // =================== Custom Styles ==============
+  const homePageStyling = {
+    width: "80%",
+    marginTop: "50px",
+    display: "block",
+    flexDirection: "column",
+    textAlign: "right",
+    margin: "auto",
+  };
+
+  const informationPageStyling = {
+    width: "80%",
+    marginTop: "50px",
+    display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
+    textAlign: "center",
+    margin: "50px auto",
+  };
+
   return (
-    <Box sx={{ width: "80%", marginTop: "50px" }}>
+    <Box sx={isHomePage ? homePageStyling : informationPageStyling}>
       <TextField
         label="Enter your residential address"
         value={searchBarValue}
@@ -130,28 +179,22 @@ export const HomePageSearchBar: React.FC = () => {
           ),
         }}
       />
-      <Box
+      <Button
+        variant="contained"
         sx={{
-          marginTop: "20px",
+          width: { xs: "100%", sm: "inherit" },
           textAlign: { xs: "center", sm: "right" },
+          backgroundColor: "primary.light",
+          maxWidth: "250px",
+          marginTop: isHomePage ? "20px" : "0px",
         }}
+        color="primary"
+        startIcon={<HowToVoteIcon />}
+        onClick={handleClick}
+        disabled={buttonIsDisabled || searchBarValue.trim().length === 0}
       >
-        <Button
-          variant="contained"
-          sx={{
-            width: { xs: "100%", sm: "auto" },
-            textAlign: { xs: "center", sm: "right" },
-            backgroundColor: "primary.light",
-            maxWidth: "250px",
-          }}
-          color="primary"
-          startIcon={<HowToVoteIcon />}
-          onClick={handleClick}
-          disabled={buttonIsDisabled || searchBarValue.trim().length === 0}
-        >
-          Find my elections info!
-        </Button>
-      </Box>
+        Find my elections info!
+      </Button>
 
       <Snackbar
         open={snackBarIsOpen}

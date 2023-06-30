@@ -12,7 +12,7 @@ import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 export function Navbar() {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ marginBottom: "1rem" }}>
       <Toolbar
         variant="regular"
         sx={{
@@ -21,14 +21,18 @@ export function Navbar() {
           flexDirection: { xs: "column", sm: "row" },
         }}
       >
-        <Box display="flex" alignItems="center">
+        <Box
+          display="flex"
+          alignItems="center"
+          component={Link}
+          to={"/"}
+          sx={{ textDecoration: "none", color: "inherit" }}
+        >
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            component={Link}
-            to={"/"}
           >
             <HowToVoteIcon />
           </IconButton>
@@ -36,9 +40,6 @@ export function Navbar() {
             Civics Central
           </Typography>
         </Box>
-        <Button variant="outlined" component={Link} to={"/"} color="inherit">
-          Home
-        </Button>
         <Button
           variant="outlined"
           component={Link}
@@ -50,10 +51,10 @@ export function Navbar() {
         <Button
           variant="outlined"
           component={Link}
-          to={"/example"}
+          to={"/civicInformation"}
           color="inherit"
         >
-          Example
+          Civic Info
         </Button>
         <Button
           variant="outlined"

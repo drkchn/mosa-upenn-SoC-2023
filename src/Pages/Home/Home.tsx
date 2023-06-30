@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { HomePageSearchBar } from "../../components/homepageSearchBar/HomepageSearchBar.tsx";
+import { AddressSearchBar } from "../../components/addressSearchBar/AddressSearchBar.tsx";
 
 export function Home() {
   return (
@@ -17,7 +17,7 @@ export function Home() {
         Enter your residential address and we'll take it from here!
       </Typography>
 
-      <HomePageSearchBar />
+      <AddressSearchBar isHomePage={true} />
       <Box
         sx={{
           display: "flex",
