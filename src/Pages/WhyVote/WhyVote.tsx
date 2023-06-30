@@ -1,4 +1,4 @@
-import { Box, ImageList, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import {
   LineChart,
@@ -43,7 +43,9 @@ export function WhyVote() {
         the power to choose how they want to live their life within the society.
         One vote can truly make the difference!!
       </Typography>
-      <Typography variant="h2" align="center" sx={{ marginBottom: "50px" }}>Through voting, we hold our power.</Typography>
+      <Typography variant="h2" align="center" sx={{ marginBottom: "50px" }}>
+        Through voting, we hold our power.
+      </Typography>
       <Typography sx={{ marginBottom: "10px" }}></Typography>
       <Typography
         variant="h4"
