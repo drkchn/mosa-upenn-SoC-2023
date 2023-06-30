@@ -31,22 +31,46 @@ export function WhyVote() {
         minHeight: "65vh",
       }}
     >
-      <Typography variant="h2">
-        Democracy is fueled by participation.
-      </Typography>
-      <Typography sx={{ marginBottom: "50px" }}></Typography>
-      <Typography align="justify" gutterBottom sx={{ marginBottom: "50px" }}>
-        Voting is importance and vital for a healthy democracy. It provides
-        citizens the power to choose their representatives, express their
-        opinions, and shape the future of their country. By participating in
-        voting, one not only becomes an active member of society, but one has
-        the power to choose how they want to live their life within the society.
-        One vote can truly make the difference!!
-      </Typography>
+      <Box sx={{ flex: 1 }}>
+        <Typography variant="h2" sx={{ marginBottom: "50px" }}>
+          Democracy is fueled by participation.
+        </Typography>
+        <Box sx={{ flex: 1, display: "flex", alignLeft: screenLeft }}>
+          <Box
+            component="img"
+            sx={{
+              width: "35%",
+              maxHeight: "auto",
+              marginBottom: "20px",
+            }}
+            alt="To encourage voting!"
+            src="https://thefulcrum.us/media-library/mobile-voting.jpg?id=27732364&width=1200&height=600&coordinates=0%2C992%2C0%2C639"
+          />
+        </Box>
+
+        <Typography
+          sx={{
+            flex: 1,
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "50px",
+          }}
+        ></Typography>
+        <Typography align="justify" gutterBottom sx={{ marginBottom: "20px" }}>
+          Voting is importance and vital for a healthy democracy. It provides
+          citizens the power to choose their representatives, express their
+          opinions, and shape the future of their country. By participating in
+          voting, one not only becomes an active member of society, but one has
+          the power to choose how they want to live their life within the
+          society. One vote can truly make the difference!!
+        </Typography>
+      </Box>
+
       <Typography variant="h2" align="center" sx={{ marginBottom: "50px" }}>
         Through voting, we hold our power.
       </Typography>
       <Typography sx={{ marginBottom: "10px" }}></Typography>
+
       <Typography
         variant="h4"
         sx={{
@@ -58,16 +82,7 @@ export function WhyVote() {
       >
         One Vote Can Make a Difference!
       </Typography>
-      <Box
-        component="img"
-        sx={{
-          width: "40%",
-          maxHeight: "auto",
-          marginBottom: "20px",
-        }}
-        alt="To encourage voting!"
-        src="https://thefulcrum.us/media-library/mobile-voting.jpg?id=27732364&width=1200&height=600&coordinates=0%2C992%2C0%2C639"
-      />
+
       <Box width="100%" height={400}>
         <LineChart width={500} height={300} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
