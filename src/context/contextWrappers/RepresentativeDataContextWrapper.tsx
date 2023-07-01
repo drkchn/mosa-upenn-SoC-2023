@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { RepresentativeDataResponse } from "../Interfaces.ts";
+import { RepresentativeDataResponse } from "../../Interfaces.ts";
 
 export interface GlobalContextProps {
   children: React.ReactNode;
@@ -8,28 +8,28 @@ export interface GlobalContextProps {
 
 // ==================== React Contexts ====================
 // Create a React context, this will make the value held here availble to all of its children
-export const RepresentativeDataResponseContext = React.createContext<
+export const RepresentativeDataContext = React.createContext<
   RepresentativeDataResponse | undefined
 >(undefined);
-export const SetRepresentativeDataResponseContext = React.createContext({});
+export const SetRepresentativeDataContext = React.createContext({});
 // ==================== React Contexts ====================
 
 // Normal react component
-export const RepresentativeDataContext = ({ children }: GlobalContextProps) => {
+export const RepresentativeDataContextWrapper = ({
+  children,
+}: GlobalContextProps) => {
   // ===================== React States =====================
   const [representativeDataResponse, setRepresentativeDataResponse] =
     useState<RepresentativeDataResponse>();
 
   // ===================== React States =====================
   return (
-    <RepresentativeDataResponseContext.Provider
-      value={representativeDataResponse}
-    >
-      <SetRepresentativeDataResponseContext.Provider
+    <RepresentativeDataContext.Provider value={representativeDataResponse}>
+      <SetRepresentativeDataContext.Provider
         value={setRepresentativeDataResponse}
       >
         {children}
-      </SetRepresentativeDataResponseContext.Provider>
-    </RepresentativeDataResponseContext.Provider>
+      </SetRepresentativeDataContext.Provider>
+    </RepresentativeDataContext.Provider>
   );
 };

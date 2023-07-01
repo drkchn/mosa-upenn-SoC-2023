@@ -12,7 +12,7 @@ import { UserData } from "../../Interfaces.ts";
 import axios from "axios";
 import { ExampleList } from "./exampleList/ExampleList.tsx";
 import { ExampleSearchBar } from "./exampleSearchBar/ExampleSearchBar.tsx";
-import { useRepresentativeDataResponse } from "../../context/customHooks.ts";
+import { useRepresentativeDataContext } from "../../context/customHooks.ts";
 
 export function Example() {
   const [randomUsers, setRandomUsers] = useState<UserData[]>([]);
@@ -24,7 +24,7 @@ export function Example() {
   const theme = useTheme();
 
   // Pulling the representative data from react context
-  const representativeData = useRepresentativeDataResponse();
+  const representativeData = useRepresentativeDataContext();
 
   // Check the console to view the theme object
   useEffect(() => {

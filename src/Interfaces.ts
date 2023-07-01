@@ -19,6 +19,8 @@ export interface UserData {
   };
 }
 
+// ================== Representatives Data =====================
+
 export interface RepresentativeDataResponse {
   normalizedInput: NormalizedAddressInput;
   kind: string;
@@ -55,3 +57,19 @@ export interface Channel {
   type: string;
   id: string;
 }
+
+// ================== Representatives Data =====================
+
+// ================== Available Elections Data =================
+export interface AvailableElectionsDataResponse {
+  kind: string;
+  elections: Election[];
+}
+
+export interface Election {
+  id: string;
+  name: string;
+  electionDay: string;
+  ocdDivisionId: string;
+}
+// ================== Available Elections Data =================
