@@ -192,7 +192,6 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         sx={{
           width: { xs: "100%", sm: "inherit" },
           textAlign: { xs: "center", sm: "right" },
-          backgroundColor: "primary.light",
           maxWidth: "250px",
           marginTop: isHomePage ? "20px" : "0px",
         }}
