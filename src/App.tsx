@@ -17,7 +17,9 @@ function App() {
         sx={{
           backgroundColor: "background.default",
           padding: "0rem",
+          position: "relative",
         }}
+        data-testid={"HERE"}
       >
         <Navbar />
         <Box
@@ -29,7 +31,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/whyvote" element={<WhyVote />} />
             <Route path="/example" element={<Example />} />
-            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/civicInformation" element={<CivicInfo />} />
             <Route path="*" element={<Home />} />
           </Routes>

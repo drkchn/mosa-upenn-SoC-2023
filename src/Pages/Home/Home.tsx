@@ -23,7 +23,7 @@ export function Home() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "left",
-          minHeight: "5vh",
+          height: "auto",
           width: "80%",
           marginTop: "10vh",
           marginBottom: { xs: "5vh", sm: "3vh", md: "0vh" },

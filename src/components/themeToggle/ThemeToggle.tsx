@@ -27,7 +27,15 @@ export const ThemeToggle = () => {
     );
   };
   return (
-    <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
+    <IconButton
+      sx={{
+        padding: "1px 6px",
+        height: "80%",
+        margin: "auto, 1rem, auto, 1rem",
+      }}
+      onClick={toggleColorMode}
+      color="inherit"
+    >
       {mode == "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
     </IconButton>
   );
