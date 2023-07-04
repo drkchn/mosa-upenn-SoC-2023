@@ -179,6 +179,27 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         onChange={handleChange}
         placeholder={placeholder}
         fullWidth
+        // sx={{
+        //   "& label.Mui-focused": {
+        //     color: "secondary.main",
+        //   },
+        //   "& .MuiOutlinedInput-root": {
+        //     "&.Mui-focused fieldset": {
+        //       borderColor: "secondary.main",
+        //     },
+        //   },
+        // }}
+        // sx={{
+        //   "&:hover .MuiOutlinedInput-notchedOutline": {
+        //     borderColor: "secondary.light", // Set the desired hover color
+        //   },
+        //   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+        //     borderColor: "secondary.main !important", // Set the desired focus color
+        //   },
+        // }}
+        // InputLabelProps={{
+        //   color: "secondary",
+        // }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

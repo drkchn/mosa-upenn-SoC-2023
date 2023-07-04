@@ -1,15 +1,16 @@
-import { Link, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import MenuIcon from "@mui/icons-material/Menu";
 import * as React from "react";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { NavbarDrawer } from "./NavbarDrawer.tsx";
+
+import { NavLink, useLocation } from "react-router-dom";
 
 interface navBarProps {
   /**
@@ -26,95 +27,50 @@ export function Navbar({ window }: navBarProps) {
   };
 
   const CustomListItemButton = ({ to, primary, fullWidth }: any) => {
-    const [selected] = useState<boolean>(to === location.pathname);
     const theme = useTheme();
+    const location = useLocation();
+    const [selected, setSelected] = useState<boolean>(to === location.pathname);
+
+    useEffect(() => {
+      if (location) {
+        setSelected(to === location.pathname);
+      }
+    }, [location]);
 
     const selectedStyles = {
       borderBottom: "5px solid",
       borderColor: theme.palette.background.paper,
       textAlign: "center",
+
+      "&:hover": {
+        borderBottom: "5px solid",
+        borderColor: theme.palette.secondary.main,
+        borderRadius: "5px",
+      },
+    };
+
+    const unselectedStyles = {
+      borderBottom: "5px solid",
+      borderColor: "transparent",
+      "&:hover": {
+        borderBottom: "5px solid",
+        borderColor: theme.palette.secondary.main,
+        borderRadius: "5px",
+      },
     };
 
     return (
       <ListItem sx={{ width: fullWidth ? "100%" : "fit-content" }}>
         <ListItemButton
-          component={Link}
-          href={to}
-          sx={selected ? selectedStyles : {}}
+          component={NavLink}
+          to={to}
+          sx={selected ? selectedStyles : unselectedStyles}
         >
           {primary}
         </ListItemButton>
       </ListItem>
     );
   };
-
-  const CustomListDrawerItemButton = ({ to, primary }: any) => {
-    const [selected] = useState<boolean>(to === location.pathname);
-    const theme = useTheme();
-
-    const selectedStyles = {
-      backgroundColor: theme.palette.secondary.main,
-      borderRadius: "5px",
-      textAlign: "center",
-      width: "100%",
-      color: "#fff",
-
-      "&:hover": {
-        backgroundColor: theme.palette.secondary.main,
-      },
-    };
-
-    return (
-      <ListItem sx={{ width: "100%", borderRadius: "5px" }}>
-        <ListItemButton
-          component={Link}
-          href={to}
-          sx={selected ? selectedStyles : {}}
-        >
-          {primary}
-        </ListItemButton>
-      </ListItem>
-    );
-  };
-
-  // Only visible on small screens
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        component={Link}
-        sx={{
-          textDecoration: "none",
-          textAlign: "center",
-          backgroundColor: "primary.main",
-          color: "#fff",
-        }}
-        href={"/"}
-      >
-        <IconButton size="large" edge="start" aria-label="menu">
-          <HowToVoteIcon sx={{ color: "#fff" }} />
-        </IconButton>
-        <Typography variant="h6" component="h1">
-          Civics Central
-        </Typography>
-      </Box>
-
-      <Divider />
-
-      <List>
-        <CustomListDrawerItemButton to={"/"} primary={"HOME"} />
-        <CustomListDrawerItemButton
-          to={"/civicInformation"}
-          primary={"CIVIC INFO"}
-        />
-        <CustomListDrawerItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
-        <CustomListDrawerItemButton to={"/contact"} primary={"CONTACT US"} />
-        <ThemeToggle />
-      </List>
-    </Box>
-  );
 
   // ====================================================================
 
@@ -141,7 +97,7 @@ export function Navbar({ window }: navBarProps) {
           <Box
             justifyContent="center"
             alignItems="center"
-            component={Link}
+            component={NavLink}
             sx={{
               textDecoration: "none",
               color: "inherit",
@@ -150,7 +106,8 @@ export function Navbar({ window }: navBarProps) {
               display: { xs: "none", sm: "flex" },
               cursor: "pointer",
             }}
-            href={"/"}
+            to={"/"}
+            // href={"/"}
           >
             <IconButton
               size="large"
@@ -182,6 +139,8 @@ export function Navbar({ window }: navBarProps) {
             />
             <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
             <CustomListItemButton to={"/contact"} primary={"CONTACT US"} />
+
+            {/*<Link to={"/"}>test</Link>*/}
             <ThemeToggle />
           </Box>
         </Toolbar>
@@ -203,7 +162,7 @@ export function Navbar({ window }: navBarProps) {
             },
           }}
         >
-          {drawer}
+          {<NavbarDrawer handleDrawerToggle={handleDrawerToggle} />}
         </Drawer>
       </Box>
     </Box>

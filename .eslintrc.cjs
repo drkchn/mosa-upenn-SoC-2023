@@ -4,7 +4,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
@@ -14,6 +13,6 @@ module.exports = {
     "max-len": ["error", { "code": 120, "ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true }],
     "@typescript-eslint/no-explicit-any" : "off",
     "@typescript-eslint/no-non-null-assertion" : "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
   },
 }
