@@ -1,20 +1,22 @@
-import { BottomNavigation, Typography, useTheme } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
+import Paper from "@mui/material/Paper";
 
 export function Footer() {
   const theme = useTheme();
 
   return (
-    <BottomNavigation
+    <Paper
       sx={{
         backgroundColor: "primary.main",
         padding: "2rem",
         textAlign: "center",
-        position: "absolute",
-        // bottom: { sm: "0" },
+        position: { xs: "sticky", sm: "fixed" },
+        bottom: { sm: "0" },
         width: "100%",
         color: theme.palette.primary.contrastText,
         height: "auto",
       }}
+      component={"footer"}
     >
       <Typography>
         &copy; {new Date().getFullYear()} &nbsp; Our Website. All rights
@@ -23,6 +25,6 @@ export function Footer() {
       <Typography>
         Created by: Connor Fech, Derek Chen, Gunjan Jhaveri & Prinsa Patel
       </Typography>
-    </BottomNavigation>
+    </Paper>
   );
 }
