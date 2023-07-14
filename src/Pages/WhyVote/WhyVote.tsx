@@ -61,13 +61,20 @@ export function WhyVote() {
         justifyContent: "center",
         minHeight: "65vh",
         marginTop: "20px",
+        padding: "40px 100px 150px 100px",
       }}
     >
-      <Box sx={{ flex: 1 }}>
+      <Box>
         <Typography variant="h2" sx={{ marginBottom: "50px" }}>
           Democracy is fueled by participation.
         </Typography>
-        <Box sx={{ display: "flex", alignLeft: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignLeft: "center",
+            flexDirection: { xs: "column", sm: "column", md: "row" },
+          }}
+        >
           <Box
             component="img"
             sx={{
