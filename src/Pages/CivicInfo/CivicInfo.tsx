@@ -5,6 +5,8 @@ import {
 } from "../../context/customHooks.ts";
 import { useEffect } from "react";
 import { AddressSearchBar } from "../../components/addressSearchBar/AddressSearchBar.tsx";
+import { Official } from "../../Interfaces.ts";
+
 
 export const CivicInfo = () => {
   const representativeData = useRepresentativeDataContext();
@@ -14,16 +16,13 @@ export const CivicInfo = () => {
     console.log({ availableElections });
   }, [representativeData, availableElections]);
   return (
-    <Box>
+    <Box sx={{ padding: { xs: "0px", sm: "100px" } }}>
       <AddressSearchBar isHomePage={false} />
 
-      <Grid container>
-        <Grid item md={6} sx={{ border: "3px solid red", width: "100%" }}>
-          <Typography variant={"h3"}>Representative Data</Typography>
-        </Grid>
+      <Grid container sx={{ justifyContent: "center" }}>
         <Grid
           item
-          md={3}
+          md={6}
           sx={{
             border: "3px solid yellow",
             width: "100%",
@@ -31,9 +30,35 @@ export const CivicInfo = () => {
         >
           <Typography variant={"h3"}>Upcoming Elections</Typography>
         </Grid>
-        <Grid item md={3} xs sx={{ border: "3px solid green", width: "100%" }}>
+        <Grid item md={6} xs sx={{ border: "3px solid green", width: "100%" }}>
           <Typography variant={"h3"}>Election Info</Typography>
         </Grid>
+
+        {representativeData?.officials
+          ? representativeData?.officials.map((official: Official) => (
+              <Grid
+                item
+                xs={3}
+                sx={{
+                  border: "1px solid black",
+                  borderRadius: "10px",
+                  width: "100%",
+                  margin: "10px",
+                }}
+                key={official.name}
+              >
+                <Box sx={{ backgroundColor: "primary.main" }}>
+                  <Typography>{official.name}</Typography>
+                  <Typography>
+                    {official.address ? official.address[0].state : "N/A"}
+                  </Typography>
+                  <Typography>
+                    {official.phones ? official.phones[0] : "N/A"}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))
+          : null}
       </Grid>
     </Box>
   );
