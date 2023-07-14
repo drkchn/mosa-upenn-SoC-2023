@@ -32,7 +32,6 @@ const dataBySex = [
 ];
 
 const dataByRace = [
-
   { name: "1990", White: 46.7, Black: 39.2, Asian: 20.3, Hispanic: 21.0 },
   { name: "1992", White: 63.6, Black: 54.0, Asian: 27.3, Hispanic: 28.9 },
   { name: "1994", White: 47.3, Black: 37.1, Asian: 21.8, Hispanic: 20.2 },
@@ -50,7 +49,7 @@ const dataByRace = [
   { name: "2018", White: 51.1, Black: 48.0, Asian: 28.9, Hispanic: 28.5 },
   { name: "2020", White: 63.7, Black: 58.7, Asian: 42.8, Hispanic: 38.8 },
   { name: "2022", White: 50.6, Black: 42.3, Asian: 29.5, Hispanic: 26.7 },
-]
+];
 
 export function WhyVote() {
   return (
@@ -120,7 +119,8 @@ export function WhyVote() {
           }}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
-            Voting has been pivotal in advancing civil rights and promoting social change in the USA.
+            Voting has been pivotal in advancing civil rights and promoting
+            social change in the USA.
           </Typography>
         </Box>
         <Box
@@ -133,7 +133,8 @@ export function WhyVote() {
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             {/* eslint-disable-next-line max-len */}
-            Voting holds elected official accountable for their actions, ensuring they fulfill their promises to the public.
+            Voting holds elected official accountable for their actions,
+            ensuring they fulfill their promises to the public.
           </Typography>
         </Box>
         <Box
@@ -145,7 +146,8 @@ export function WhyVote() {
           }}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
-            By voting, you honor the struggles and sacrifices of those who fought for your right to vote.
+            By voting, you honor the struggles and sacrifices of those who
+            fought for your right to vote.
           </Typography>
         </Box>
       </Box>
@@ -182,7 +184,11 @@ export function WhyVote() {
               <XAxis
                 dataKey="name"
                 padding={{ left: 30, right: 30 }}
-                label={{ value: "Year", position: "insideBottomLeft", offset: -10 }}
+                label={{
+                  value: "Year",
+                  position: "insideBottomLeft",
+                  offset: -10,
+                }}
               />
               <YAxis
                 label={{ value: "Percent", angle: -90, position: "insideLeft" }}
@@ -219,7 +225,11 @@ export function WhyVote() {
               <XAxis
                 dataKey="name"
                 padding={{ left: 30, right: 30 }}
-                label={{ value: "Year", position: "insideBottomLeft", offset: -10 }}
+                label={{
+                  value: "Year",
+                  position: "insideBottomLeft",
+                  offset: -10,
+                }}
               />
               <YAxis
                 label={{ value: "Percent", angle: -90, position: "insideLeft" }}
@@ -235,7 +245,6 @@ export function WhyVote() {
               <Line type="monotone" dataKey="Black" stroke="#d32f2f" />
               <Line type="monotone" dataKey="Asian" stroke="#ed6c02" />
               <Line type="monotone" dataKey="Hispanic" stroke="#2e7d32" />
-
             </LineChart>
           </Box>
         </Box>
@@ -244,11 +253,11 @@ export function WhyVote() {
       <Box sx={{ flex: 1 }}>
         <Box sx={{ backgroundColor: "background.default", padding: "20px" }}>
           <Typography variant="body2" sx={{ textAlign: "center" }}>
-            Data above was obtained from the United States Census Bureau: https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
+            Data above was obtained from the United States Census Bureau:
+            https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
           </Typography>
         </Box>
       </Box>
-
     </Box>
   );
 }
