@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { AddressSearchBar } from "../../components/addressSearchBar/AddressSearchBar.tsx";
 import { Official } from "../../Interfaces.ts";
 
-
 export const CivicInfo = () => {
   const representativeData = useRepresentativeDataContext();
   const availableElections = useAvailableElectionsContext();
