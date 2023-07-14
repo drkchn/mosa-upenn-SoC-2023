@@ -1,5 +1,5 @@
 import { PaletteMode } from "@mui/material";
-import { blueGrey, grey } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 // Will create a new theme and override the passed in values of the  default MUI theme
 // Can read more about MUI theme and crete theme
@@ -17,39 +17,23 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             main: "#810CA8",
           },
           secondary: {
-            main: "#D6C0E6",
-          },
-          error: {
-            main: "#d32f2f",
-          },
-          warning: {
-            main: "#ed6c02",
-          },
-          success: {
-            main: "#2e7d32",
-          },
-          info: {
-            main: "#0288d1",
+            main: grey[700],
           },
           background: {
             paper: "#D6C0E6",
             default: "#D6C0E6",
           },
-          text: {
-            primary: "rgba(0, 0, 0, 0.87)",
-          },
         }
       : {
-          // palette values for dark mode
-          primary: blueGrey,
-          divider: blueGrey[700],
-          background: {
-            default: blueGrey[900],
-            paper: blueGrey[900],
+          primary: {
+            main: "#4b5ea6",
           },
-          text: {
-            primary: "#fff",
-            secondary: grey[500],
+          secondary: {
+            main: "#EA463A",
+          },
+          background: {
+            paper: "#424242",
+            default: "#303030",
           },
         }),
   },

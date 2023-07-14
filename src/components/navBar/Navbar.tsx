@@ -1,70 +1,170 @@
-import {
-  AppBar,
-  Button,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material";
 import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
+import MenuIcon from "@mui/icons-material/Menu";
+import * as React from "react";
+import Drawer from "@mui/material/Drawer";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { NavbarDrawer } from "./NavbarDrawer.tsx";
 
-export function Navbar() {
+import { NavLink, useLocation } from "react-router-dom";
+
+interface navBarProps {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+export function Navbar({ window }: navBarProps) {
+  const drawerWidth = 240;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState: any) => !prevState);
+  };
+
+  const CustomListItemButton = ({ to, primary, fullWidth }: any) => {
+    const theme = useTheme();
+    const location = useLocation();
+    const [selected, setSelected] = useState<boolean>(to === location.pathname);
+
+    useEffect(() => {
+      if (location) {
+        setSelected(to === location.pathname);
+      }
+    }, [location]);
+
+    const selectedStyles = {
+      borderBottom: "5px solid",
+      borderColor: theme.palette.background.paper,
+      textAlign: "center",
+
+      "&:hover": {
+        borderBottom: "5px solid",
+        borderColor: theme.palette.secondary.main,
+        borderRadius: "5px",
+      },
+    };
+
+    const unselectedStyles = {
+      borderBottom: "5px solid",
+      borderColor: "transparent",
+      "&:hover": {
+        borderBottom: "5px solid",
+        borderColor: theme.palette.secondary.main,
+        borderRadius: "5px",
+      },
+    };
+
+    return (
+      <ListItem sx={{ width: fullWidth ? "100%" : "fit-content" }}>
+        <ListItemButton
+          component={NavLink}
+          to={to}
+          sx={selected ? selectedStyles : unselectedStyles}
+        >
+          {primary}
+        </ListItemButton>
+      </ListItem>
+    );
+  };
+
+  // ====================================================================
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   return (
-    <AppBar position="static">
-      <Toolbar
-        variant="regular"
-        sx={{
-          justifyContent: "space-between",
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-        }}
+    <Box sx={{ marginBottom: "5rem" }}>
+      <AppBar
+        component="nav"
+        sx={{ backgroundColor: "primary.main", backgroundImage: "none" }}
       >
-        <Box display="flex" alignItems="center">
+        <Toolbar>
           <IconButton
-            size="large"
-            edge="start"
             color="inherit"
-            aria-label="menu"
-            component={Link}
-            to={"/"}
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <HowToVoteIcon />
+            <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="h1">
-            Civics Central
-          </Typography>
-        </Box>
-        <Button variant="outlined" component={Link} to={"/"} color="inherit">
-          Home
-        </Button>
-        <Button
-          variant="outlined"
-          component={Link}
-          to={"/whyvote"}
-          color="inherit"
+
+          <Box
+            justifyContent="center"
+            alignItems="center"
+            component={NavLink}
+            sx={{
+              textDecoration: "none",
+              color: "inherit",
+              textAlign: "center",
+              backgroundColor: "primary.main",
+              display: { xs: "none", sm: "flex" },
+              cursor: "pointer",
+            }}
+            to={"/"}
+            // href={"/"}
+          >
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            >
+              <HowToVoteIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" component="h1">
+              Civics Central
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              marginLeft: "auto",
+              width: "80%",
+              justifyContent: "space-evenly",
+              height: "64px",
+              alignItems: "center",
+            }}
+          >
+            <CustomListItemButton to={"/"} primary={"HOME"} />
+            <CustomListItemButton
+              to={"/civicInformation"}
+              primary={"CIVIC INFO"}
+            />
+            <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
+            <CustomListItemButton to={"/contact"} primary={"CONTACT US"} />
+
+            {/*<Link to={"/"}>test</Link>*/}
+            <ThemeToggle />
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
         >
-          Why Vote?
-        </Button>
-        <Button
-          variant="outlined"
-          component={Link}
-          to={"/example"}
-          color="inherit"
-        >
-          Example
-        </Button>
-        <Button
-          variant="outlined"
-          component={Link}
-          to={"/contactus"}
-          color="inherit"
-        >
-          Contact Us
-        </Button>
-        <ThemeToggle />
-      </Toolbar>
-    </AppBar>
+          {<NavbarDrawer handleDrawerToggle={handleDrawerToggle} />}
+        </Drawer>
+      </Box>
+    </Box>
   );
 }

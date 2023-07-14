@@ -1,12 +1,11 @@
+import React from "react";
 import {
   createTheme,
   CssBaseline,
   PaletteMode,
   ThemeProvider,
 } from "@mui/material";
-import React from "react";
-import { getDesignTokens } from "../theme.ts";
-import { RepresentativeDataContext } from "./RepresentativeDataContext.tsx";
+import { getDesignTokens } from "../../theme.ts";
 
 export interface GlobalContextProps {
   children: React.ReactNode;
@@ -19,7 +18,7 @@ export const SetColorModeContext = React.createContext({});
 // ==================== React Contexts ====================
 
 // Normal react component
-export const GlobalContext = ({ children }: GlobalContextProps) => {
+export const ThemeContextWrapper = ({ children }: GlobalContextProps) => {
   // ===================== React States =====================
   const [mode, setMode] = React.useState<PaletteMode>(
     (localStorage.getItem("mode") as PaletteMode) || "light"
@@ -29,6 +28,7 @@ export const GlobalContext = ({ children }: GlobalContextProps) => {
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   // ===================== React States =====================
+
   return (
     // ColorModeContext.Provider makes the color mode available down the React tree thanks to React context.
     // Mui will then use this to set the correct theme of each component in the tree.
@@ -38,7 +38,7 @@ export const GlobalContext = ({ children }: GlobalContextProps) => {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon and also makes the theme take effect on background colors */}
           <CssBaseline />
-          <RepresentativeDataContext>{children}</RepresentativeDataContext>
+          {children}
         </ThemeProvider>
       </SetColorModeContext.Provider>
     </ColorModeContext.Provider>
