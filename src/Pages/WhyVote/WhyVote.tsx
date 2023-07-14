@@ -132,7 +132,6 @@ export function WhyVote() {
           }}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
-            {/* eslint-disable-next-line max-len */}
             Voting holds elected official accountable for their actions,
             ensuring they fulfill their promises to the public.
           </Typography>
