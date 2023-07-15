@@ -180,7 +180,7 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         placeholder={placeholder}
         fullWidth
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && searchBarValue.trim().length !== 0) {
             handleClick();
           }
         }}
