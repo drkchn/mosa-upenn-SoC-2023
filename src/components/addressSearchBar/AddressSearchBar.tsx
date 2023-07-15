@@ -179,6 +179,11 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         onChange={handleChange}
         placeholder={placeholder}
         fullWidth
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleClick();
+          }
+        }}
         // sx={{
         //   "& label.Mui-focused": {
         //     color: "secondary.main",
