@@ -17,16 +17,11 @@ function App() {
         sx={{
           backgroundColor: "background.default",
           padding: "0rem",
-          position: "relative",
         }}
         data-testid={"HERE"}
       >
         <Navbar />
-        <Box
-          sx={{
-            minHeight: "70vh",
-          }}
-        >
+        <Box>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/whyvote" element={<WhyVote />} />

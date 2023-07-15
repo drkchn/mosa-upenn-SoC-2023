@@ -8,13 +8,14 @@ export function Footer() {
     <Paper
       sx={{
         backgroundColor: "primary.main",
-        padding: "2rem",
+        padding: "1.5rem",
         textAlign: "center",
-        position: { xs: "sticky", sm: "fixed" },
-        bottom: { sm: "0" },
+        position: "absolute",
+        bottom: 0,
         width: "100%",
         color: theme.palette.primary.contrastText,
         height: "auto",
+        marginTop: "50px",
       }}
       component={"footer"}
     >
