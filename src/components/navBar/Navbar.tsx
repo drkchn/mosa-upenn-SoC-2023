@@ -140,7 +140,6 @@ export function Navbar({ window }: navBarProps) {
             <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
             <CustomListItemButton to={"/contact"} primary={"CONTACT US"} />
 
-            {/*<Link to={"/"}>test</Link>*/}
             <ThemeToggle />
           </Box>
         </Toolbar>
