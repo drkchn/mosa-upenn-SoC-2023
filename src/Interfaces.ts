@@ -27,6 +27,7 @@ export interface RepresentativeDataResponse {
   divisions: any;
   offices: Office[];
   officials: Official[];
+  officialsWithOffices: OfficialWithOffice[];
 }
 
 export interface NormalizedAddressInput {
@@ -51,6 +52,10 @@ export interface Official {
   phones: string[];
   urls: string[];
   channels: Channel[];
+}
+
+export interface OfficialWithOffice extends Official {
+  office: Office;
 }
 
 export interface Channel {

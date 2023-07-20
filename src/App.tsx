@@ -21,7 +21,7 @@ function App() {
         data-testid={"HERE"}
       >
         <Navbar />
-        <Box>
+        <Box sx={{ padding: "20px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/whyvote" element={<WhyVote />} />

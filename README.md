@@ -100,3 +100,13 @@ VITE_CIVICS_API_KEY=[Your API key goes here]
 - env must be prepended with VITE, or it will not be picked up.
 
 3. Use it in the application
+
+
+## Features ##
+- Responsive/Advanced design
+- React router with different pages
+- Api querying, data mapping and error handling
+- React state/context handling to share data with different components
+- Chart integration
+- Complete linter, hosting, build scripts and testing libraries with typescript
+- Git repo using user stories/issue and trunk based development
