@@ -23,7 +23,9 @@ export const CivicInfo = () => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "70%",
-    height: "60%",
+    maxWidth: "800px",
+    height: "fit-content",
+    minHeight: "60%",
     bgcolor: "background.paper",
     border: "3px solid #000",
     boxShadow: 24,
@@ -217,7 +219,7 @@ export const CivicInfo = () => {
                   Phone:
                 </Typography>
                 <Typography>
-                  {selectedOfficial.phones[0]
+                  {selectedOfficial.phones && selectedOfficial.phones[0]
                     ? selectedOfficial.phones[0]
                     : "N/A"}
                 </Typography>
@@ -240,7 +242,7 @@ export const CivicInfo = () => {
                   Address:
                 </Typography>
                 <Typography>
-                  {selectedOfficial.address
+                  {selectedOfficial.address && selectedOfficial.address[0]
                     ? selectedOfficial.address[0].line1 +
                       " " +
                       selectedOfficial.address[0].city +
