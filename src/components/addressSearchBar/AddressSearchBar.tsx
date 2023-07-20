@@ -16,6 +16,10 @@ import {
   useSetRepresentativeDataContext,
 } from "../../context/customHooks.ts";
 import { useNavigate } from "react-router-dom";
+import {
+  OfficialWithOffice,
+  RepresentativeDataResponse,
+} from "../../Interfaces.ts";
 
 const placeholders = [
   "740 S. Magnolia Rd, Gastonia, NC 28052",
@@ -107,7 +111,27 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
       )
       .then((res) => {
         console.log(res);
-        setRepresentativeDataResponse(res.data);
+
+        // Format response to map officials to offices
+        const representativeData: RepresentativeDataResponse = res.data;
+
+        const officialsWithOffices: OfficialWithOffice[] = [];
+
+        for (const office of representativeData.offices) {
+          let officialWithOffice: OfficialWithOffice;
+          for (const officialIndex of office.officialIndices) {
+            officialWithOffice = {
+              ...representativeData.officials[officialIndex],
+              office: office,
+            };
+
+            officialsWithOffices.push(officialWithOffice);
+          }
+        }
+
+        representativeData.officialsWithOffices = officialsWithOffices;
+
+        setRepresentativeDataResponse(representativeData);
         setRepresentativeCallSuccessful(true);
       })
       .catch((err) => {
@@ -220,6 +244,14 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
           textAlign: { xs: "center", sm: "right" },
           maxWidth: "250px",
           marginTop: isHomePage ? "20px" : "0px",
+          "&:hover": {
+            transform: "translateY(-2px) scale(1.04)",
+            transition: "all 0.3s ease-in-out",
+          },
+          "&:active": {
+            transform: "translateY(0px) scale(1)",
+            transition: "all 0.1s ease-in-out",
+          },
         }}
         color="primary"
         startIcon={<HowToVoteIcon />}
