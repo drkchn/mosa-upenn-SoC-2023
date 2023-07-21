@@ -1,11 +1,11 @@
-import { Box, Grid, Link, Typography } from "@mui/material";
+import { Box, Grid, Link, ListItem, Typography, List } from "@mui/material";
 import {
   useAvailableElectionsContext,
   useRepresentativeDataContext,
 } from "../../context/customHooks.ts";
 import { useEffect, useState } from "react";
 import { AddressSearchBar } from "../../components/addressSearchBar/AddressSearchBar.tsx";
-import { Channel, OfficialWithOffice } from "../../Interfaces.ts";
+import { Channel, Election, OfficialWithOffice } from "../../Interfaces.ts";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
 
@@ -53,6 +53,12 @@ export const CivicInfo = () => {
     setOpen(true);
   };
 
+  const queryElectionData = (id: any) => {
+    const electionID = id.target.getAttribute("data-electionID");
+
+    console.log(electionID);
+  };
+
   useEffect(() => {
     console.log({ representativeData });
     console.log({ availableElections });
@@ -76,6 +82,26 @@ export const CivicInfo = () => {
           }}
         >
           <Typography variant={"h3"}>Upcoming Elections</Typography>
+          <Box>
+            <List>
+              {availableElections?.elections
+                ? availableElections?.elections.map((election: Election) => (
+                    <ListItem
+                      sx={{
+                        backgroundColor: "primary.main",
+                        "&:hover": { cursor: "pointer" },
+                      }}
+                      data-electionID={election.id}
+                      onClick={(e) => {
+                        queryElectionData(e);
+                      }}
+                    >
+                      {election.name}
+                    </ListItem>
+                  ))
+                : null}
+            </List>
+          </Box>
         </Grid>
         <Grid item md={6} sx={{ border: "3px solid green", width: "100%" }}>
           <Typography variant={"h3"}>Election Info</Typography>
