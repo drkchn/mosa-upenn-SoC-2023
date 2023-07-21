@@ -54,7 +54,7 @@ export const CivicInfo = () => {
   };
 
   const queryElectionData = (id: any) => {
-    let electionID = id.target.getAttribute("data-electionID");
+    const electionID = id.target.getAttribute("data-electionID");
 
     console.log(electionID);
   };
