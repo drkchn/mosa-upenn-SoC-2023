@@ -8,11 +8,13 @@ import { AddressSearchBar } from "../../components/addressSearchBar/AddressSearc
 import { Channel, Election, OfficialWithOffice } from "../../Interfaces.ts";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
+import axios from "axios";
 
 export const CivicInfo = () => {
   const representativeData = useRepresentativeDataContext();
   const availableElections = useAvailableElectionsContext();
-
+  const queryElectionsMap = new Map();
+  const [selectedElection, setSelectedElection] = React.useState<any>("");
   const [open, setOpen] = React.useState(false);
   const [selectedOfficial, setSelectedOfficial] =
     useState<OfficialWithOffice>();
@@ -57,6 +59,32 @@ export const CivicInfo = () => {
     const electionID = id.target.getAttribute("data-electionID");
 
     console.log(electionID);
+
+    const address = "453 Alamanda St, Daytona Beach, FL 32114";
+    console.log(queryElectionsMap);
+
+    if (queryElectionsMap.has(electionID)) {
+      console.log(queryElectionsMap.get(electionID));
+      setSelectedElection(queryElectionsMap.get(electionID));
+    } else {
+      axios
+        .get(
+          `https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=${address}&electionId=${electionID}&key=${
+            import.meta.env.VITE_CIVICS_API_KEY
+          }`
+        )
+
+        .then((res) => {
+          console.log(res);
+
+          queryElectionsMap.set(electionID, res.data);
+          setSelectedElection(res.data);
+        })
+        .catch((err) => {
+          // Catch any errors in the api chain
+          console.log(err);
+        });
+    }
   };
 
   useEffect(() => {
@@ -105,6 +133,7 @@ export const CivicInfo = () => {
         </Grid>
         <Grid item md={6} sx={{ border: "3px solid green", width: "100%" }}>
           <Typography variant={"h3"}>Election Info</Typography>
+          <Box>{JSON.stringify(selectedElection)}</Box>
         </Grid>
         <Box sx={{ margin: "20px" }}>
           <Typography variant={"h3"}>Representatives</Typography>
