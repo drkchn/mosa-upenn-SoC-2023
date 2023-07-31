@@ -138,7 +138,7 @@ export function Navbar({ window }: navBarProps) {
               primary={"CIVIC INFO"}
             />
             <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
-            <CustomListItemButton to={"/contact"} primary={"CONTACT US"} />
+            <CustomListItemButton to={"/about"} primary={"ABOUT"} />
 
             <ThemeToggle />
           </Box>
