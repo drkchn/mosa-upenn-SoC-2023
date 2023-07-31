@@ -2,11 +2,11 @@ import {
   Box,
   Grid,
   Link,
-  ListItem,
   Typography,
   List,
   Snackbar,
   Alert,
+  CircularProgress, ListItemButton,
 } from "@mui/material";
 import {
   useAvailableElectionsContext,
@@ -14,7 +14,12 @@ import {
 } from "../../context/customHooks.ts";
 import { useEffect, useState } from "react";
 import { AddressSearchBar } from "../../components/addressSearchBar/AddressSearchBar.tsx";
-import { Channel, Election, OfficialWithOffice } from "../../Interfaces.ts";
+import {
+  Channel,
+  Election,
+  OfficialWithOffice,
+  ElectionItem,
+} from "../../Interfaces.ts";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
 import axios from "axios";
@@ -23,14 +28,18 @@ import Fade from "@mui/material/Fade";
 export const CivicInfo = () => {
   const representativeData = useRepresentativeDataContext();
   const availableElections = useAvailableElectionsContext();
-  const queryElectionsMap = new Map();
-  const [selectedElection, setSelectedElection] = React.useState<any>("");
+  // const queryElectionsMap = new Map();
+  const [mapState, setMapState] = useState<Map<string, ElectionItem>>(
+    new Map()
+  );
+  const [selectedElection, setSelectedElection] =
+    React.useState<ElectionItem>();
   const [representativeModalIsOpen, setRepresentativeModalIsOpen] =
     React.useState(false);
   const [selectedOfficial, setSelectedOfficial] =
     useState<OfficialWithOffice>();
 
-  const [itemIsDisabled, setItemIsDisabled] = useState<boolean>(false);
+  const [apiCallInProgress, setApiCallInProgress] = useState<boolean>(false);
 
   // For the google Api Error
   const [snackBarIsOpen, setSnackBarIsOpen] = useState<boolean>(false);
@@ -39,6 +48,10 @@ export const CivicInfo = () => {
 
   const closeSnackBar = () => {
     setSnackBarIsOpen(false);
+  };
+
+  const updateMap = (key: string, value: ElectionItem) => {
+    setMapState((map) => new Map(map.set(key, value)));
   };
 
   const modalStyle = {
@@ -59,7 +72,7 @@ export const CivicInfo = () => {
     justifyContent: "space-evenly",
   };
 
-  const representativeeDataBoxStyle = {
+  const representativeDataBoxStyle = {
     display: "flex",
     flexDirection: { xs: "column", sm: "row" },
   };
@@ -77,18 +90,19 @@ export const CivicInfo = () => {
     setRepresentativeModalIsOpen(true);
   };
 
-  const queryElectionData = (id: any) => {
-    const electionID = id.target.getAttribute("data-electionid");
-
-    console.log(electionID);
-
+  const queryElectionData = (event: any) => {
+    console.log(typeof event);
+    if (apiCallInProgress) {
+      return;
+    }
+    const electionID = event.target.getAttribute("data-electionid");
     const address = "336%20Briar%20Patch%20Mountainside%20NJ%2C%2007092";
-    console.log(queryElectionsMap);
 
-    if (queryElectionsMap.has(electionID)) {
-      console.log(queryElectionsMap.get(electionID));
-      setSelectedElection(queryElectionsMap.get(electionID));
+    if (mapState.has(electionID)) {
+      console.log(mapState.get(electionID));
+      setSelectedElection(mapState.get(electionID));
     } else {
+      setApiCallInProgress(true);
       axios
         .get(
           `https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=${address}&electionId=${electionID}&key=${
@@ -98,8 +112,7 @@ export const CivicInfo = () => {
 
         .then((res) => {
           console.log(res);
-
-          queryElectionsMap.set(electionID, res.data);
+          updateMap(electionID, res.data);
           setSelectedElection(res.data);
         })
         .catch((err) => {
@@ -107,6 +120,9 @@ export const CivicInfo = () => {
           // Catch any errors and show them in a snackbar
           setGoogleApiErrorMessage(err.response.data.error.message);
           setSnackBarIsOpen(true);
+        })
+        .finally(() => {
+          setApiCallInProgress(false);
         });
     }
   };
@@ -129,36 +145,50 @@ export const CivicInfo = () => {
           item
           md={6}
           sx={{
-            border: "3px solid yellow",
             width: "100%",
           }}
         >
           <Typography variant={"h3"}>Upcoming Elections</Typography>
-          <Box>
+          <Box sx={{ padding: "0px 10px", maxHeight: "500px", overflowY: "scroll" }}>
             <List>
               {availableElections?.elections
                 ? availableElections?.elections.map((election: Election) => (
-                    <ListItem
+                    <ListItemButton
                       key={election.id}
                       sx={{
                         backgroundColor: "primary.main",
-                        "&:hover": { cursor: "pointer" },
+                        borderRadius: "10px",
+                        padding: "10px 5px",
+                        margin: "10px 0px",
+                        "&:hover": {
+                          cursor: "pointer",
+                          transform: "scale(1.05)",
+                        },
                       }}
+                      disabled={apiCallInProgress}
                       data-electionid={election.id}
                       onClick={(e) => {
                         queryElectionData(e);
                       }}
                     >
                       {election.name}
-                    </ListItem>
+                    </ListItemButton>
                   ))
                 : null}
             </List>
           </Box>
         </Grid>
-        <Grid item md={6} sx={{ border: "3px solid green", width: "100%" }}>
+        <Grid item md={6} sx={{borderLeft: {sm: "none", md: "2px solid black"}, width: "100%" }}>
           <Typography variant={"h3"}>Election Info</Typography>
-          <Box>{JSON.stringify(selectedElection)}</Box>
+          <Box sx={{padding: "0px 10px", maxHeight: "500px", overflowY: "scroll"}}>
+            {apiCallInProgress ? (
+              <CircularProgress />
+            ) : selectedElection ? (
+              JSON.stringify(selectedElection)
+            ) : (
+              "Please select and election to see information about it."
+            )}
+          </Box>
         </Grid>
         <Box sx={{ margin: "20px" }}>
           <Typography variant={"h3"}>Representatives</Typography>
@@ -256,7 +286,7 @@ export const CivicInfo = () => {
 
           {selectedOfficial ? (
             <>
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography
                   variant={"h4"}
                   sx={{ textAlign: "center", width: "100%" }}
@@ -264,7 +294,7 @@ export const CivicInfo = () => {
                   {selectedOfficial.name}
                 </Typography>
               </Box>
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Office:
                 </Typography>
@@ -274,7 +304,7 @@ export const CivicInfo = () => {
                     : "N/A"}
                 </Typography>
               </Box>
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Role(s):
                 </Typography>
@@ -286,7 +316,7 @@ export const CivicInfo = () => {
                     ))
                   : "N/A"}
               </Box>
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Party:
                 </Typography>
@@ -294,7 +324,7 @@ export const CivicInfo = () => {
                   {selectedOfficial.party ? selectedOfficial.party : "N/A"}
                 </Typography>
               </Box>
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Phone:
                 </Typography>
@@ -304,7 +334,7 @@ export const CivicInfo = () => {
                     : "N/A"}
                 </Typography>
               </Box>
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Website:
                 </Typography>
@@ -317,7 +347,7 @@ export const CivicInfo = () => {
                 )}
               </Box>
 
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Address:
                 </Typography>
@@ -334,7 +364,7 @@ export const CivicInfo = () => {
                 </Typography>
               </Box>
 
-              <Box sx={representativeeDataBoxStyle}>
+              <Box sx={representativeDataBoxStyle}>
                 <Typography sx={representativeDataBoxHeaderStyle}>
                   Social Media:
                 </Typography>
