@@ -241,11 +241,11 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
               <HomeIcon />
             </InputAdornment>
           ),
-          sx:{
-          '-webkit-autofill': {
+          sx: {
+            "-webkit-autofill": {
               color: "red",
-            }
-        }
+            },
+          },
         }}
       />
       <Button

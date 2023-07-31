@@ -6,7 +6,8 @@ import {
   List,
   Snackbar,
   Alert,
-  CircularProgress, ListItemButton,
+  CircularProgress,
+  ListItemButton,
 } from "@mui/material";
 import {
   useAvailableElectionsContext,
@@ -149,7 +150,13 @@ export const CivicInfo = () => {
           }}
         >
           <Typography variant={"h3"}>Upcoming Elections</Typography>
-          <Box sx={{ padding: "0px 10px", maxHeight: "500px", overflowY: "scroll" }}>
+          <Box
+            sx={{
+              padding: "0px 10px",
+              maxHeight: "500px",
+              overflowY: "scroll",
+            }}
+          >
             <List>
               {availableElections?.elections
                 ? availableElections?.elections.map((election: Election) => (
@@ -178,9 +185,22 @@ export const CivicInfo = () => {
             </List>
           </Box>
         </Grid>
-        <Grid item md={6} sx={{borderLeft: {sm: "none", md: "2px solid black"}, width: "100%" }}>
+        <Grid
+          item
+          md={6}
+          sx={{
+            borderLeft: { sm: "none", md: "2px solid black" },
+            width: "100%",
+          }}
+        >
           <Typography variant={"h3"}>Election Info</Typography>
-          <Box sx={{padding: "0px 10px", maxHeight: "500px", overflowY: "scroll"}}>
+          <Box
+            sx={{
+              padding: "0px 10px",
+              maxHeight: "500px",
+              overflowY: "scroll",
+            }}
+          >
             {apiCallInProgress ? (
               <CircularProgress />
             ) : selectedElection ? (
