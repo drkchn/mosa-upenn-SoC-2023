@@ -78,3 +78,60 @@ export interface Election {
   ocdDivisionId: string;
 }
 // ================== Available Elections Data =================
+// ================== Selected Elections Data ==================
+
+export interface ElectionItem {
+  election: {
+    id: string;
+    name: string;
+    electionDay: string;
+    ocdDivisionId: string;
+  };
+  normalizedInput: NormalizedAddressInput;
+  contests: Contest[];
+  kind: string;
+  state: StateInfo[];
+}
+
+export interface StateInfo {
+  name: string;
+  electionAdministrationBody: {
+    name: string;
+    electionInfoUrl: string;
+    electionRegistrationUrl: string;
+    electionRegistrationConfirmationUrl: string;
+    absenteeVotingInfoUrl: string;
+    votingLocationFinderUrl: string;
+    ballotInfoUrl: string;
+    correspondenceAddress: NormalizedAddressInput;
+  };
+  sources: Source[];
+}
+
+export interface Source {
+  name: string;
+  official: boolean;
+}
+
+export interface Contest {
+  type: string;
+  office: string;
+  level: string[];
+  roles: string[];
+  district: District;
+  sources: Source[];
+  candidates: Candidate[];
+}
+
+export interface District {
+  name: string;
+  scope: string;
+  id: string;
+}
+
+export interface Candidate {
+  name: string;
+  party: string;
+  candidateUrl: string;
+  channels: Channel[];
+}

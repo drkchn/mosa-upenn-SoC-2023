@@ -203,11 +203,17 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         onChange={handleChange}
         placeholder={placeholder}
         fullWidth
+        // sx={{
+        //   autofill: {
+        //     color: "red",
+        //   }
+        // }}
         onKeyDown={(e) => {
           if (e.key === "Enter" && searchBarValue.trim().length !== 0) {
             handleClick();
           }
         }}
+        // inputProps={}
         // sx={{
         //   "& label.Mui-focused": {
         //     color: "secondary.main",
@@ -235,6 +241,11 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
               <HomeIcon />
             </InputAdornment>
           ),
+          sx: {
+            "-webkit-autofill": {
+              color: "red",
+            },
+          },
         }}
       />
       <Button
