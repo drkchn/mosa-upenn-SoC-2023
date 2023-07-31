@@ -1,4 +1,13 @@
-import { Box, Grid, Link, ListItem, Typography, List } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Link,
+  ListItem,
+  Typography,
+  List,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import {
   useAvailableElectionsContext,
   useRepresentativeDataContext,
@@ -9,15 +18,28 @@ import { Channel, Election, OfficialWithOffice } from "../../Interfaces.ts";
 import Modal from "@mui/material/Modal";
 import * as React from "react";
 import axios from "axios";
+import Fade from "@mui/material/Fade";
 
 export const CivicInfo = () => {
   const representativeData = useRepresentativeDataContext();
   const availableElections = useAvailableElectionsContext();
   const queryElectionsMap = new Map();
   const [selectedElection, setSelectedElection] = React.useState<any>("");
-  const [open, setOpen] = React.useState(false);
+  const [representativeModalIsOpen, setRepresentativeModalIsOpen] =
+    React.useState(false);
   const [selectedOfficial, setSelectedOfficial] =
     useState<OfficialWithOffice>();
+
+  const [itemIsDisabled, setItemIsDisabled] = useState<boolean>(false);
+
+  // For the google Api Error
+  const [snackBarIsOpen, setSnackBarIsOpen] = useState<boolean>(false);
+  const [googleApiErrorMessage, setGoogleApiErrorMessage] =
+    useState<string>("");
+
+  const closeSnackBar = () => {
+    setSnackBarIsOpen(false);
+  };
 
   const modalStyle = {
     position: "absolute" as const,
@@ -48,19 +70,19 @@ export const CivicInfo = () => {
     marginTop: { xs: "10px", sm: "0px" },
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setRepresentativeModalIsOpen(false);
 
   const handleClickOnOfficial = (official: OfficialWithOffice) => {
     setSelectedOfficial(official);
-    setOpen(true);
+    setRepresentativeModalIsOpen(true);
   };
 
   const queryElectionData = (id: any) => {
-    const electionID = id.target.getAttribute("data-electionID");
+    const electionID = id.target.getAttribute("data-electionid");
 
     console.log(electionID);
 
-    const address = "453 Alamanda St, Daytona Beach, FL 32114";
+    const address = "336%20Briar%20Patch%20Mountainside%20NJ%2C%2007092";
     console.log(queryElectionsMap);
 
     if (queryElectionsMap.has(electionID)) {
@@ -81,8 +103,10 @@ export const CivicInfo = () => {
           setSelectedElection(res.data);
         })
         .catch((err) => {
-          // Catch any errors in the api chain
           console.log(err);
+          // Catch any errors and show them in a snackbar
+          setGoogleApiErrorMessage(err.response.data.error.message);
+          setSnackBarIsOpen(true);
         });
     }
   };
@@ -115,11 +139,12 @@ export const CivicInfo = () => {
               {availableElections?.elections
                 ? availableElections?.elections.map((election: Election) => (
                     <ListItem
+                      key={election.id}
                       sx={{
                         backgroundColor: "primary.main",
                         "&:hover": { cursor: "pointer" },
                       }}
-                      data-electionID={election.id}
+                      data-electionid={election.id}
                       onClick={(e) => {
                         queryElectionData(e);
                       }}
@@ -204,7 +229,7 @@ export const CivicInfo = () => {
         </Grid>
       </Grid>
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={representativeModalIsOpen} onClose={handleClose}>
         <Box sx={modalStyle}>
           <Typography
             sx={{
@@ -328,6 +353,18 @@ export const CivicInfo = () => {
           )}
         </Box>
       </Modal>
+
+      <Snackbar
+        open={snackBarIsOpen}
+        autoHideDuration={6000}
+        onClose={closeSnackBar}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        TransitionComponent={Fade}
+      >
+        <Alert onClose={closeSnackBar} severity="error" sx={{ width: "100%" }}>
+          {googleApiErrorMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
