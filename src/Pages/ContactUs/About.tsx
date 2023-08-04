@@ -2,8 +2,8 @@ import { Grid, Typography, Box, Link } from "@mui/material";
 import ReactIMG from "../../assets/React-Logo.svg";
 import TypescriptIMG from "../../assets/Typescript-Logo.png";
 import NodeIMG from "../../assets/Node-Logo.webp";
-import GoogleCloudIMG from "../../assets/GoogleCloud-Logo.png";
-import ViteIMG from "../../assets/Vite-Logo.png";
+import GoogleCloudIMG from "../../assets/GoogleCloud.png";
+import ViteIMG from "../../assets/Vite-logo.png";
 import MUIIMG from "../../assets/MUI-Logo.png";
 
 const techstyle = {
