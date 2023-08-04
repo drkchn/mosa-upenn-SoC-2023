@@ -4,7 +4,7 @@ import { Navbar } from "./components/navBar/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
 import { WhyVote } from "./Pages/WhyVote/WhyVote.tsx";
 import { Example } from "./Pages/Example/Example.tsx";
-import { ContactUs } from "./Pages/ContactUs/ContactUs.tsx";
+import { About } from "./Pages/ContactUs/About.tsx";
 import { Box } from "@mui/material";
 import { GlobalContextWrapper } from "./context/GlobalContextWrapper.tsx";
 import { Footer } from "./components/footer/Footer.tsx";
@@ -26,7 +26,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/whyvote" element={<WhyVote />} />
             <Route path="/example" element={<Example />} />
-            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/about" element={<About />} />
             <Route path="/civicInformation" element={<CivicInfo />} />
             <Route path="*" element={<Home />} />
           </Routes>
