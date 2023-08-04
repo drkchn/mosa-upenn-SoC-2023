@@ -83,7 +83,7 @@ export const NavbarDrawer = ({ handleDrawerToggle }: navbarDrawerProps) => {
           primary={"CIVIC INFO"}
         />
         <CustomListDrawerItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
-        <CustomListDrawerItemButton to={"/contact"} primary={"CONTACT US"} />
+        <CustomListDrawerItemButton to={"/about"} primary={"ABOUT"} />
         <ThemeToggle />
       </List>
     </Box>
