@@ -12,6 +12,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import axios from "axios";
 import {
+  getSetUserInputAddressContext,
+  getUserInputAddressContext,
   useSetAvailableElectionsContext,
   useSetRepresentativeDataContext,
 } from "../../context/customHooks.ts";
@@ -39,7 +41,12 @@ interface AddressSearchBarProps {
 
 export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
   // =================== React States ===================
-  const [searchBarValue, setSearchBarValue] = useState<string>("");
+
+  const userInputAddress = getUserInputAddressContext();
+
+  const [userAddress, setUserAddress] = useState<string>(
+    userInputAddress ? userInputAddress : ""
+  );
   const [placeholder, setPlaceholder] = useState<string>(
     "220 S. 33rd St, Philadelphia, PA 19104"
   );
@@ -63,7 +70,7 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
   // Getting access to setters from context
   const setRepresentativeDataResponse: any = useSetRepresentativeDataContext();
   const setAvailableElections: any = useSetAvailableElectionsContext();
-
+  const setUserInputAddress: any = getSetUserInputAddressContext();
   // For changing address
   useEffect(() => {
     let placeholderIndex = 0;
@@ -88,11 +95,12 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
 
   // Updates the state of the search bar value when typing
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchBarValue(event.target.value);
+    setUserAddress(event.target.value);
   };
 
   const handleClick = () => {
-    const address = encodeAddress(searchBarValue);
+    setUserInputAddress(userAddress);
+    const address = encodeAddress(userAddress);
     queryRepresentativeAPI(address);
   };
 
@@ -199,7 +207,7 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
     <Box sx={isHomePage ? homePageStyling : informationPageStyling}>
       <TextField
         label="Enter your residential address"
-        value={searchBarValue}
+        value={userAddress}
         onChange={handleChange}
         placeholder={placeholder}
         fullWidth
@@ -209,7 +217,7 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         //   }
         // }}
         onKeyDown={(e) => {
-          if (e.key === "Enter" && searchBarValue.trim().length !== 0) {
+          if (e.key === "Enter" && userAddress.trim().length !== 0) {
             handleClick();
           }
         }}
@@ -267,7 +275,7 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         color="primary"
         startIcon={<HowToVoteIcon />}
         onClick={handleClick}
-        disabled={buttonIsDisabled || searchBarValue.trim().length === 0}
+        disabled={buttonIsDisabled || userAddress.trim().length === 0}
       >
         Find my elections info!
       </Button>

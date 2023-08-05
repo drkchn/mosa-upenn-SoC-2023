@@ -3,6 +3,8 @@ import React from "react";
 import { RepresentativeDataContextWrapper } from "./contextWrappers/RepresentativeDataContextWrapper.tsx";
 import { AvailableElectionsContextWrapper } from "./contextWrappers/AvailableElectionsContext.tsx";
 import { ThemeContextWrapper } from "./contextWrappers/ThemeContextWrapper.tsx";
+import { AddressContextWrapper } from "./contextWrappers/AddressContextWrapper.tsx";
+import { ElectionResponseContextWrapper } from "./contextWrappers/ElectionResponseContextWrapper.tsx";
 
 export interface GlobalContextProps {
   children: React.ReactNode;
@@ -14,7 +16,9 @@ export const GlobalContextWrapper = ({ children }: GlobalContextProps) => {
     <ThemeContextWrapper>
       <RepresentativeDataContextWrapper>
         <AvailableElectionsContextWrapper>
-          {children}
+          <ElectionResponseContextWrapper>
+            <AddressContextWrapper>{children}</AddressContextWrapper>
+          </ElectionResponseContextWrapper>
         </AvailableElectionsContextWrapper>
       </RepresentativeDataContextWrapper>
     </ThemeContextWrapper>

@@ -11,6 +11,14 @@ import {
   ColorModeContext,
   SetColorModeContext,
 } from "./contextWrappers/ThemeContextWrapper.tsx";
+import {
+  SetUserInputAddressContext,
+  UserInputAddressContext,
+} from "./contextWrappers/AddressContextWrapper.tsx";
+import {
+  ElectionResponseContext,
+  SetElectionResponseContext,
+} from "./contextWrappers/ElectionResponseContextWrapper.tsx";
 
 // This is a utility file for custom hooks
 
@@ -46,3 +54,23 @@ export const useSetAvailableElectionsContext = () => {
   return React.useContext(SetAvailableElectionsContext);
 };
 // ============= Available Elections =============
+
+// ============= User Address =============
+
+export const getUserInputAddressContext = () => {
+  return React.useContext(UserInputAddressContext);
+};
+export const getSetUserInputAddressContext = () => {
+  return React.useContext(SetUserInputAddressContext);
+};
+// ============== User Address ===============
+
+// ============= Election Response =============
+
+export const getElectionResponseContext = () => {
+  return React.useContext(ElectionResponseContext);
+};
+export const getSetElectionResponseContext = () => {
+  return React.useContext(SetElectionResponseContext);
+};
+// ============= Election Response =============
