@@ -20,11 +20,11 @@ export const HistoryChart = ({ success, failure }: HistoryChartProps) => {
 
   const chartData = [
     {
-      name: "success",
+      name: "200",
       value: success,
     },
     {
-      name: "failure",
+      name: "400",
       value: failure,
     },
   ];

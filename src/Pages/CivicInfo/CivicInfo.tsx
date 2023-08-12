@@ -192,7 +192,7 @@ export const CivicInfo = () => {
       {representativeData ? (
         <>
           <Typography
-            variant={"h3"}
+            variant={"h4"}
             sx={{ fontFamily: "serif", marginBottom: "20px" }}
           >
             UPCOMING ELECTIONS
@@ -253,6 +253,11 @@ export const CivicInfo = () => {
                 borderLeft: { sm: "none", md: "2px solid black" },
                 width: "100%",
                 display: "flex",
+                justifyContent: {
+                  xs: "center",
+                  sm: "center",
+                  md: "flex-start",
+                },
               }}
             >
               <Box
@@ -279,7 +284,7 @@ export const CivicInfo = () => {
               </Box>
             </Grid>
             <Box sx={{ margin: "30px 0px 20px 0px" }}>
-              <Typography variant={"h3"} sx={{ fontFamily: "serif" }}>
+              <Typography variant={"h4"} sx={{ fontFamily: "serif" }}>
                 REPRESENTATIVES
               </Typography>
             </Box>
@@ -311,7 +316,7 @@ export const CivicInfo = () => {
           />
         </>
       ) : (
-        <Typography variant={"h3"} sx={{ marginTop: "20px" }}>
+        <Typography variant={"h4"} sx={{ marginTop: "20px" }}>
           Enter Any U.S. Address
         </Typography>
       )}

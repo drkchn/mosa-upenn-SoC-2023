@@ -7,14 +7,14 @@ interface selectedElectionProps {
 
 const selectedElectionBoxStyle = {
   display: "flex",
-  flexDirection: { sm: "column", md: "row" },
+  flexDirection: { xs: "column", sm: "column", md: "row" },
 };
 
 const selectedElectionHeaderStyle = {
   fontWeight: "bold",
-  textAlign: { sm: "center", md: "left" },
+  textAlign: { xs: "center", sm: "center", md: "left" },
   marginRight: "10px",
-  marginTop: { sm: "10px", md: "0px" },
+  marginTop: { xs: "10px", sm: "10px", md: "0px" },
 };
 
 const combineAddress = (address: NormalizedAddressInput): string => {
@@ -35,7 +35,7 @@ const combineAddress = (address: NormalizedAddressInput): string => {
 
 export const SelectedElection = ({ election }: selectedElectionProps) => {
   return (
-    <Box sx={{ padding: "10px 35px" }}>
+    <Box sx={{ padding: { xs: "10px 5px", sm: "10px 35px" } }}>
       <Typography variant={"h4"} sx={{ fontFamily: "serif" }}>
         {" "}
         {election.election.name}
