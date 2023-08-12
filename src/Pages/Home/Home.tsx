@@ -30,15 +30,6 @@ export function Home() {
           textAlign: "left",
         }}
       >
-        <Typography variant={"h5"}>About our Summer of Code project</Typography>
-        <Typography>
-          Our website aims to encourage users to participate in democracy by
-          making it easier to access elections information.
-        </Typography>
-        <Typography>
-          When a user inputs their residential address, our website will display
-          information based on any upcoming U.S. elections! Try it out!
-        </Typography>
       </Box>
     </Box>
   );

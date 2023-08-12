@@ -82,7 +82,7 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
     return () => clearInterval(interval);
   }, []);
 
-  // Only navigate if both our calls were successful and we are still on the home page
+  // Only navigate if both our calls were successful, and we are still on the home page
   useEffect(() => {
     if (representativeCallSuccessful && electionCallSuccessful && isHomePage) {
       navigate("/civicInformation");
