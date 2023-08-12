@@ -21,6 +21,7 @@ import {
   Election,
   OfficialWithOffice,
   ElectionItem,
+  ActualHttpResponseData,
 } from "../../Interfaces.ts";
 import * as React from "react";
 import axios from "axios";
@@ -28,6 +29,7 @@ import Fade from "@mui/material/Fade";
 import { RepresentativeModal } from "./representativeModal/RepresentativeModal.tsx";
 import RepresentativeChip from "./representativeButton/RepresentativeChip.tsx";
 import { SelectedElection } from "./selectedElection/SelectedElection.tsx";
+import { updateLocalStorage } from "../../utilities.ts";
 
 export const CivicInfo = () => {
   const representativeData = useRepresentativeDataContext();
@@ -135,43 +137,48 @@ export const CivicInfo = () => {
     setRepresentativeModalIsOpen(true);
   };
 
-  const queryElectionData = (event: any) => {
+  const queryElectionData = (event: React.MouseEvent<HTMLElement>) => {
     if (apiCallInProgress) {
       return;
     }
-    const electionID = event.target.getAttribute("data-electionid");
+
+    // @ts-ignore
+    const electionID = event?.target?.getAttribute("data-electionid");
 
     if (electionsMap.has(electionID)) {
       setSelectedElection(electionsMap.get(electionID));
     } else {
       setApiCallInProgress(true);
+      const requestUrl = `https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=${userInputAddress}&electionId=${electionID}&key=${
+        import.meta.env.VITE_CIVICS_API_KEY
+      }`;
+
+      let response: ActualHttpResponseData;
+
       axios
-        .get(
-          `https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=${userInputAddress}&electionId=${electionID}&key=${
-            import.meta.env.VITE_CIVICS_API_KEY
-          }`
-        )
+        .get(requestUrl)
 
         .then((res) => {
-          console.log(res);
           updateMap(electionID, res.data);
           setSelectedElection(res.data);
+          response = res;
         })
         .catch((err) => {
-          console.log(err);
           // Catch any errors and show them in a snackbar
           setGoogleApiErrorMessage(err.response.data.error.message);
           setSnackBarIsOpen(true);
+          response = err;
         })
         .finally(() => {
           setApiCallInProgress(false);
+          updateLocalStorage(requestUrl, response, "GET");
         });
     }
   };
 
   useEffect(() => {
-    console.log({ representativeData });
-    console.log({ availableElections });
+    // console.log({ representativeData });
+    // console.log({ availableElections });
   }, [representativeData, availableElections]);
   return (
     <Box
@@ -186,9 +193,9 @@ export const CivicInfo = () => {
         <>
           <Typography
             variant={"h3"}
-            sx={{ textDecoration: "underline", marginBottom: "20px" }}
+            sx={{ fontFamily: "serif", marginBottom: "20px" }}
           >
-            Upcoming Elections
+            UPCOMING ELECTIONS
           </Typography>
 
           <Grid container sx={{ justifyContent: "center" }}>
@@ -260,15 +267,21 @@ export const CivicInfo = () => {
                 ) : (
                   <Typography
                     variant={"h4"}
-                    sx={{ marginTop: "20px", padding: "15px" }}
+                    sx={{
+                      marginTop: "20px",
+                      padding: "15px",
+                      textAlign: "center",
+                    }}
                   >
-                    Please select and election to learn more information.
+                    Select An Election
                   </Typography>
                 )}
               </Box>
             </Grid>
-            <Box sx={{ margin: "20px" }}>
-              <Typography variant={"h3"}>Representatives</Typography>
+            <Box sx={{ margin: "30px 0px 20px 0px" }}>
+              <Typography variant={"h3"} sx={{ fontFamily: "serif" }}>
+                REPRESENTATIVES
+              </Typography>
             </Box>
 
             <Grid
@@ -299,7 +312,7 @@ export const CivicInfo = () => {
         </>
       ) : (
         <Typography variant={"h3"} sx={{ marginTop: "20px" }}>
-          Please enter your address.{" "}
+          Enter Any U.S. Address
         </Typography>
       )}
 

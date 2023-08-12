@@ -3,7 +3,7 @@ import { OfficialWithOffice } from "../../../Interfaces.ts";
 
 interface representativeChipProps {
   official: OfficialWithOffice;
-  handleClickOnOfficial: any;
+  handleClickOnOfficial: (official: OfficialWithOffice) => void;
 }
 
 export default function RepresentativeChip({

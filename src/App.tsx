@@ -9,8 +9,12 @@ import { Box } from "@mui/material";
 import { GlobalContextWrapper } from "./context/GlobalContextWrapper.tsx";
 import { Footer } from "./components/footer/Footer.tsx";
 import { CivicInfo } from "./Pages/CivicInfo/CivicInfo.tsx";
+import { CallHistoryDrawer } from "./components/callHistoryDrawer/CallHistoryDrawer.tsx";
+import { useState } from "react";
 
 function App() {
+  const [callHistoryIsOpen, setCallHistoryIsOpen] = useState<boolean>(false);
+
   return (
     <GlobalContextWrapper>
       <Box
@@ -20,7 +24,7 @@ function App() {
         }}
         data-testid={"HERE"}
       >
-        <Navbar />
+        <Navbar setCallHistoryOpen={setCallHistoryIsOpen} />
         <Box sx={{ padding: "20px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -33,6 +37,11 @@ function App() {
         </Box>
         <Footer />
       </Box>
+
+      <CallHistoryDrawer
+        open={callHistoryIsOpen}
+        setOpen={setCallHistoryIsOpen}
+      />
     </GlobalContextWrapper>
   );
 }

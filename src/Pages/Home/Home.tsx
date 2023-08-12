@@ -12,9 +12,9 @@ export function Home() {
         minHeight: "65vh",
       }}
     >
-      <Typography variant={"h3"}>Welcome to Civics Central!</Typography>
+      <Typography variant={"h3"}>Welcome to Civics Central</Typography>
       <Typography variant={"h5"}>
-        Enter your residential address and we'll take it from here!
+        Enter any U.S. address and we'll take it from here.
       </Typography>
 
       <AddressSearchBar isHomePage={true} />
@@ -29,8 +29,7 @@ export function Home() {
           marginBottom: { xs: "5vh", sm: "3vh", md: "0vh" },
           textAlign: "left",
         }}
-      >
-      </Box>
+      ></Box>
     </Box>
   );
 }

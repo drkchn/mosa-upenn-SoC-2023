@@ -21,7 +21,7 @@ export const SetColorModeContext = React.createContext({});
 export const ThemeContextWrapper = ({ children }: GlobalContextProps) => {
   // ===================== React States =====================
   const [mode, setMode] = React.useState<PaletteMode>(
-    (localStorage.getItem("mode") as PaletteMode) || "light"
+    (localStorage.getItem("mode") as PaletteMode) || "dark"
   );
 
   // regenerate the theme when the mode changes

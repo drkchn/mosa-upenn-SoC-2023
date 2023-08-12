@@ -12,7 +12,7 @@ export const ThemeToggle = () => {
 
   useEffect(() => {
     if (localStorage.getItem("mode") === null) {
-      localStorage.setItem("mode", "light");
+      localStorage.setItem("mode", "dark");
     }
     const mode: PaletteMode = localStorage.getItem("mode") as PaletteMode;
     setMode(mode);

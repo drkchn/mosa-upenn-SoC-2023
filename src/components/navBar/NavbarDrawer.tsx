@@ -9,7 +9,15 @@ import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 
 import { NavLink, useLocation } from "react-router-dom";
 
-const CustomListDrawerItemButton = ({ to, primary }: any) => {
+interface customListDrawerItemProps {
+  to: string;
+  primary: string;
+}
+
+const CustomListDrawerItemButton = ({
+  to,
+  primary,
+}: customListDrawerItemProps) => {
   const theme = useTheme();
   const location = useLocation();
   const [selected, setSelected] = useState<boolean>(to === location.pathname);

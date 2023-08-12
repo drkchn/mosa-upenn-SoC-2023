@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { NavbarDrawer } from "./NavbarDrawer.tsx";
 
 import { NavLink, useLocation } from "react-router-dom";
+import { HistoryToggle } from "../historyToggle/HistoryToggle.tsx";
 
 interface navBarProps {
   /**
@@ -18,12 +19,13 @@ interface navBarProps {
    * You won't need it on your project.
    */
   window?: () => Window;
+  setCallHistoryOpen: (open: boolean) => void;
 }
-export function Navbar({ window }: navBarProps) {
+export function Navbar({ window, setCallHistoryOpen }: navBarProps) {
   const drawerWidth = 240;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState: any) => !prevState);
+    setMobileOpen((prevState: boolean) => !prevState);
   };
 
   const CustomListItemButton = ({ to, primary, fullWidth }: any) => {
@@ -94,6 +96,10 @@ export function Navbar({ window }: navBarProps) {
             <MenuIcon />
           </IconButton>
 
+          <Box sx={{ marginLeft: "auto", display: { sm: "none" } }}>
+            <HistoryToggle setCallHistoryOpen={setCallHistoryOpen} />
+          </Box>
+
           <Box
             justifyContent="center"
             alignItems="center"
@@ -107,7 +113,6 @@ export function Navbar({ window }: navBarProps) {
               cursor: "pointer",
             }}
             to={"/"}
-            // href={"/"}
           >
             <IconButton
               size="large"
@@ -141,6 +146,7 @@ export function Navbar({ window }: navBarProps) {
             <CustomListItemButton to={"/about"} primary={"ABOUT"} />
 
             <ThemeToggle />
+            <HistoryToggle setCallHistoryOpen={setCallHistoryOpen} />
           </Box>
         </Toolbar>
       </AppBar>
@@ -161,7 +167,7 @@ export function Navbar({ window }: navBarProps) {
             },
           }}
         >
-          {<NavbarDrawer handleDrawerToggle={handleDrawerToggle} />}
+          <NavbarDrawer handleDrawerToggle={handleDrawerToggle} />
         </Drawer>
       </Box>
     </Box>

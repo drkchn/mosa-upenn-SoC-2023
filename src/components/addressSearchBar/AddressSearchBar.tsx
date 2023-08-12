@@ -19,9 +19,11 @@ import {
 } from "../../context/customHooks.ts";
 import { useNavigate } from "react-router-dom";
 import {
+  ActualHttpResponseData,
   OfficialWithOffice,
   RepresentativeDataResponse,
 } from "../../Interfaces.ts";
+import { updateLocalStorage } from "../../utilities.ts";
 
 const placeholders = [
   "740 S. Magnolia Rd, Gastonia, NC 28052",
@@ -111,14 +113,17 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
 
   const queryRepresentativeAPI = (address: string) => {
     setButtonIsDisabled(true);
+
+    const requestUrl = `https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=${address}&includeOffices=true&key=${
+      import.meta.env.VITE_CIVICS_API_KEY
+    }`;
+
+    let response: ActualHttpResponseData;
+
     axios
-      .get(
-        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=${address}&includeOffices=true&key=${
-          import.meta.env.VITE_CIVICS_API_KEY
-        }`
-      )
+      .get(requestUrl)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
 
         // Format response to map officials to offices
         const representativeData: RepresentativeDataResponse = res.data;
@@ -141,40 +146,47 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
 
         setRepresentativeDataResponse(representativeData);
         setRepresentativeCallSuccessful(true);
+
+        response = res;
       })
       .catch((err) => {
         // Catch any errors in the api chain
-        console.log(err);
+        // console.log(err);
         setGoogleApiErrorMessage(err.response.data.error.message);
         setSnackBarIsOpen(true);
+        response = err.response;
       })
       .finally(() => {
         // Call the query for elections API after the representative call is successful
+        updateLocalStorage(requestUrl, response, "GET");
         queryAvailableElectionsAPI();
       });
   };
 
   const queryAvailableElectionsAPI = () => {
+    const requestUrl = `https://www.googleapis.com/civicinfo/v2/elections?key=${
+      import.meta.env.VITE_CIVICS_API_KEY
+    }`;
+    let response: ActualHttpResponseData;
     axios
-      .get(
-        `https://www.googleapis.com/civicinfo/v2/elections?key=${
-          import.meta.env.VITE_CIVICS_API_KEY
-        }`
-      )
+      .get(requestUrl)
       .then((res) => {
         // Setting the state on successful response
         setAvailableElections(res.data);
         setElectionCallSuccessful(true);
+        response = res;
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         if (!snackBarIsOpen) {
           setGoogleApiErrorMessage(err.response.data.error.message);
           setSnackBarIsOpen(true);
         }
+        response = err.response;
       })
       .finally(() => {
         setButtonIsDisabled(false);
+        updateLocalStorage(requestUrl, response, "GET");
       });
   };
 

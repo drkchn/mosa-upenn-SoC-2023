@@ -1,5 +1,4 @@
 import { ElectionItem, NormalizedAddressInput } from "../../../Interfaces.ts";
-import { useEffect } from "react";
 import { Box, Link, Typography } from "@mui/material";
 
 interface selectedElectionProps {
@@ -35,13 +34,12 @@ const combineAddress = (address: NormalizedAddressInput): string => {
 };
 
 export const SelectedElection = ({ election }: selectedElectionProps) => {
-  useEffect(() => {
-    console.log({ election });
-  });
-
   return (
     <Box sx={{ padding: "10px 35px" }}>
-      <Typography variant={"h4"}> {election.election.name}</Typography>
+      <Typography variant={"h4"} sx={{ fontFamily: "serif" }}>
+        {" "}
+        {election.election.name}
+      </Typography>
 
       <Box sx={selectedElectionBoxStyle}>
         <Typography sx={selectedElectionHeaderStyle}>Election Date:</Typography>
