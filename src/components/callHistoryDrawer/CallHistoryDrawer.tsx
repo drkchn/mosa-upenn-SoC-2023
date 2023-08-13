@@ -42,7 +42,12 @@ export const CallHistoryDrawer = ({
       open={open}
       onClose={() => setOpen(false)}
       PaperProps={{
-        sx: { width: "80%", maxWidth: "800px" },
+        sx: {
+          width: "80%",
+          maxWidth: "800px",
+          backgroundColor: "background.default",
+          backgroundImage: "none",
+        },
       }}
     >
       <Typography

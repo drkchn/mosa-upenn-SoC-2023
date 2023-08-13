@@ -1,10 +1,12 @@
-import { Grid, Typography, Box, Link } from "@mui/material";
+import { Grid, Typography, Box, Link, Fab } from "@mui/material";
 import ReactIMG from "../../assets/React-Logo.svg";
 import TypescriptIMG from "../../assets/Typescript-Logo.png";
 import NodeIMG from "../../assets/Node-Logo.webp";
-import GoogleCloudIMG from "../../assets/GoogleCloud.png";
-import ViteIMG from "../../assets/Vite-logo.png";
+import GoogleCloudIMG from "../../assets/Google-Cloud-Logo.png";
+import ViteIMG from "../../assets/Vite-Logo.png";
 import MUIIMG from "../../assets/MUI-Logo.png";
+import React from "react";
+import { TechExplanationDrawer } from "./techExplanationDrawer/TechExplanationDrawer.tsx";
 
 const techstyle = {
   width: "125px",
@@ -19,6 +21,25 @@ const techstyle = {
 
 //sx={{border: "2px solid red", padding: "30px 30px 100px 30px;"}}
 export function About() {
+  const [openExplanationDrawer, setOpenExplanationDrawer] =
+    React.useState<boolean>(false);
+
+  const buttonStyling = {
+    width: "15%",
+    minWidth: "175px",
+    margin: "50px 0px",
+    transition: "opacity 0.2s linear",
+    opacity: openExplanationDrawer ? "0" : "1",
+    "&:hover": {
+      cursor: "pointer",
+      transform: "scale(1.05)",
+    },
+
+    "&:active": {
+      transform: "scale(1)",
+    },
+  };
+
   return (
     <Box>
       <Typography variant="h3" align="center" sx={{ py: 2 }}>
@@ -87,7 +108,20 @@ export function About() {
             target={"_blank"}
             rel={"noopener noreferrer"}
           >
-            <Box component={"img"} src={GoogleCloudIMG} sx={techstyle} />
+            <Box
+              component={"img"}
+              src={GoogleCloudIMG}
+              sx={{
+                width: "200px",
+                height: "125px",
+                justifyContent: "space-evenly",
+                "&:hover": {
+                  cursor: "pointer",
+                  transition: "all 0.3s ease-in-out",
+                  transform: "scale(1.05)",
+                },
+              }}
+            />
           </Link>
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
@@ -109,6 +143,26 @@ export function About() {
           </Link>
         </Grid>
       </Grid>
+
+      <Box>
+
+        <Fab
+          sx={buttonStyling}
+          variant="extended"
+          color="primary"
+          aria-label="add"
+          onClick={() => {
+            setOpenExplanationDrawer(true);
+          }}
+        >
+          See More
+        </Fab>
+      </Box>
+
+      <TechExplanationDrawer
+        open={openExplanationDrawer}
+        setOpen={setOpenExplanationDrawer}
+      />
     </Box>
   );
 }
