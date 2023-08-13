@@ -145,7 +145,6 @@ export function About() {
       </Grid>
 
       <Box>
-
         <Fab
           sx={buttonStyling}
           variant="extended"
