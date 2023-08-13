@@ -4,7 +4,7 @@ import { Navbar } from "./components/navBar/Navbar.tsx";
 import { Route, Routes } from "react-router-dom";
 import { WhyVote } from "./Pages/WhyVote/WhyVote.tsx";
 import { Example } from "./Pages/Example/Example.tsx";
-import { About } from "./Pages/ContactUs/About.tsx";
+import { About } from "./Pages/About/About.tsx";
 import { Box } from "@mui/material";
 import { GlobalContextWrapper } from "./context/GlobalContextWrapper.tsx";
 import { Footer } from "./components/footer/Footer.tsx";
@@ -25,7 +25,7 @@ function App() {
         data-testid={"HERE"}
       >
         <Navbar setCallHistoryOpen={setCallHistoryIsOpen} />
-        <Box sx={{ padding: "20px" }}>
+        <Box sx={{ padding: "20px", minHeight: "calc(100vh - 180px)" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/whyvote" element={<WhyVote />} />
@@ -35,8 +35,8 @@ function App() {
             <Route path="*" element={<Home />} />
           </Routes>
         </Box>
-        <Footer />
       </Box>
+      <Footer />
 
       <CallHistoryDrawer
         open={callHistoryIsOpen}

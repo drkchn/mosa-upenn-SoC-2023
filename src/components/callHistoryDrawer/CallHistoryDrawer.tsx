@@ -53,11 +53,15 @@ export const CallHistoryDrawer = ({
         Request History
       </Typography>
       <Box sx={{ height: "50%", overflowX: "auto" }}>
-        {history && history.length > 0
-          ? history.map((call: MyHttpResponseData, index) => {
-              return <CallHistoryItem key={index} response={call} />;
-            })
-          : "Please make a request to see request history"}
+        {history && history.length > 0 ? (
+          history.map((call: MyHttpResponseData, index) => {
+            return <CallHistoryItem key={index} response={call} />;
+          })
+        ) : (
+          <Typography sx={{ textAlign: "center" }}>
+            Please make a request to see request history
+          </Typography>
+        )}
       </Box>
       {history && history.length > 0 ? (
         <>

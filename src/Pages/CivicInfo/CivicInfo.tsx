@@ -183,8 +183,7 @@ export const CivicInfo = () => {
   return (
     <Box
       sx={{
-        padding: { xs: "0px 0px 50px 0px", sm: "50px" },
-        margin: "0px 10px 60px 10px",
+        margin: "0px 10px 10px 10px",
       }}
     >
       <AddressSearchBar isHomePage={false} />

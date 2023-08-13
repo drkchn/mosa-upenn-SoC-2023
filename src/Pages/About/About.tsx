@@ -7,8 +7,8 @@ import ViteIMG from "../../assets/Vite-logo.png";
 import MUIIMG from "../../assets/MUI-Logo.png";
 
 const techstyle = {
-  width: 125,
-  height: 125,
+  width: "125px",
+  height: "125px",
   justifyContent: "space-evenly",
   "&:hover": {
     cursor: "pointer",
@@ -17,9 +17,10 @@ const techstyle = {
   },
 };
 
+//sx={{border: "2px solid red", padding: "30px 30px 100px 30px;"}}
 export function About() {
   return (
-    <div>
+    <Box>
       <Typography variant="h3" align="center" sx={{ py: 2 }}>
         About Us
       </Typography>
@@ -51,7 +52,7 @@ export function About() {
         container
         spacing={2}
         justifyContent="center"
-        sx={{ marginBottom: { xs: "125px", sm: "0px" } }}
+        sx={{ marginBottom: { xs: "25px", sm: "0px" } }}
       >
         <Grid item xs={6} sm={4} md={2}>
           <Link
@@ -108,6 +109,6 @@ export function About() {
           </Link>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

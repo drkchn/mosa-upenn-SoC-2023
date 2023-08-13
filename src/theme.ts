@@ -9,6 +9,15 @@ import { grey } from "@mui/material/colors";
 
 // This will allow us to create custom overrides of the default theme with a light and dark mode
 export const getDesignTokens = (mode: PaletteMode) => ({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   palette: {
     mode,
     ...(mode === "light"
