@@ -1,17 +1,15 @@
-import { useTheme } from "@mui/material";
-import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import MenuIcon from "@mui/icons-material/Menu";
 import * as React from "react";
 import Drawer from "@mui/material/Drawer";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-import { useEffect, useState } from "react";
 import { NavbarDrawer } from "./NavbarDrawer.tsx";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HistoryToggle } from "../historyToggle/HistoryToggle.tsx";
+import { CustomListItemButton } from "./CustomListItemButton.tsx";
+import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
+import { SeeCodeButton } from "./SeeCodeButton.tsx";
 
 interface navBarProps {
   /**
@@ -26,52 +24,6 @@ export function Navbar({ window, setCallHistoryOpen }: navBarProps) {
   const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState: boolean) => !prevState);
-  };
-
-  const CustomListItemButton = ({ to, primary, fullWidth }: any) => {
-    const theme = useTheme();
-    const location = useLocation();
-    const [selected, setSelected] = useState<boolean>(to === location.pathname);
-
-    useEffect(() => {
-      if (location) {
-        setSelected(to === location.pathname);
-      }
-    }, [location]);
-
-    const selectedStyles = {
-      borderBottom: "5px solid",
-      borderColor: theme.palette.background.paper,
-      textAlign: "center",
-
-      "&:hover": {
-        borderBottom: "5px solid",
-        borderColor: theme.palette.secondary.main,
-        borderRadius: "5px",
-      },
-    };
-
-    const unselectedStyles = {
-      borderBottom: "5px solid",
-      borderColor: "transparent",
-      "&:hover": {
-        borderBottom: "5px solid",
-        borderColor: theme.palette.secondary.main,
-        borderRadius: "5px",
-      },
-    };
-
-    return (
-      <ListItem sx={{ width: fullWidth ? "100%" : "fit-content" }}>
-        <ListItemButton
-          component={NavLink}
-          to={to}
-          sx={selected ? selectedStyles : unselectedStyles}
-        >
-          {primary}
-        </ListItemButton>
-      </ListItem>
-    );
   };
 
   // ====================================================================
@@ -145,8 +97,10 @@ export function Navbar({ window, setCallHistoryOpen }: navBarProps) {
             <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
             <CustomListItemButton to={"/about"} primary={"ABOUT"} />
 
-            <ThemeToggle />
+            {/*<NavbarMenu />*/}
+            <SeeCodeButton />
             <HistoryToggle setCallHistoryOpen={setCallHistoryOpen} />
+            <ThemeToggle />
           </Box>
         </Toolbar>
       </AppBar>

@@ -154,7 +154,7 @@ export function About() {
             setOpenExplanationDrawer(true);
           }}
         >
-          See More
+          Learn More
         </Fab>
       </Box>
 

@@ -8,6 +8,7 @@ import List from "@mui/material/List";
 import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 
 import { NavLink, useLocation } from "react-router-dom";
+import { SeeCodeButton } from "./SeeCodeButton.tsx";
 
 interface customListDrawerItemProps {
   to: string;
@@ -92,7 +93,17 @@ export const NavbarDrawer = ({ handleDrawerToggle }: navbarDrawerProps) => {
         />
         <CustomListDrawerItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
         <CustomListDrawerItemButton to={"/about"} primary={"ABOUT"} />
-        <ThemeToggle />
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <ThemeToggle />
+          <SeeCodeButton />
+        </Box>
       </List>
     </Box>
   );

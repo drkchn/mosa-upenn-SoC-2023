@@ -57,7 +57,7 @@ export const TechExplanationDrawer = ({
             setOpen(false);
           }}
         >
-          See Less
+          Close
         </Fab>
       </Box>
       <Box sx={{ textAlign: "center", padding: "20px" }}>
@@ -66,14 +66,20 @@ export const TechExplanationDrawer = ({
           component="h2"
           sx={{ margin: "10px", textAlign: "center" }}
         >
-          Tech Explanation
+          Application Design
         </Typography>
 
-        <Typography>
+        <Typography sx={{ textAlign: "center" }}>
           {" "}
-          - google cloud apis - Firebase - React context, state, router - MUI -
-          components and responsive design - Custom themes - Memoization -
-          Typescript for strict type checking
+          Civics Central is developed using React, Typescript and Vite.
+          Typescript is utilized to enforce strict static typing. Axios is used
+          to query multiple different API's from the Google Cloud Suite from
+          which the reposes are memoized in order to limit overuse of Google
+          Civics API and hitting our rate limit. Our application using React
+          Router to handle rendering different pages as well as React Context
+          and State to share data between components. Material UI component
+          library is leveraged for pre-built components, implementing custom
+          application themes and applying principals of responsive design.
         </Typography>
 
         <Typography
@@ -81,11 +87,17 @@ export const TechExplanationDrawer = ({
           component="h2"
           sx={{ margin: "10px", textAlign: "center" }}
         >
-          Development Setup
+          Local Development Environment
         </Typography>
-        <Typography>
-          - Prettier linter - Build and push scripts - React testing library and
-          code coverage capability - Vite build tool - Environment variables
+        <Typography sx={{ textAlign: "center" }}>
+          Our local development configuration is focused on enforcing frontend
+          development best practices. We utilized prettier and eslint to enforce
+          code format standards as well as build and push scripts that run
+          linters and tests and the Vite build tool to package code for
+          production. Our application also has React Testing Library and Jest
+          for unit testing and code coverage reports. Environment variables are
+          used to pass various run time arguments to the application, such as
+          API keys.
         </Typography>
 
         <Typography
@@ -93,9 +105,18 @@ export const TechExplanationDrawer = ({
           component="h2"
           sx={{ margin: "10px", textAlign: "center" }}
         >
-          Collaboration
+          Team Collaboration
         </Typography>
-        <Typography>- trunk based development - Githooks</Typography>
+        <Typography sx={{ textAlign: "center" }}>
+          {" "}
+          Our team practiced a trunk based development methodology to
+          effectively and efficiently collaborate on on this project. We
+          utilized git branches and github issues in order to collaborate
+          together and mitigate potential merge conflicts. In a trunk based
+          development model the main branch acts as the single source of truth
+          and one off branches are checked out on a per issue basis then merged
+          back into the main branch after the issue is complete.{" "}
+        </Typography>
       </Box>
     </Drawer>
   );

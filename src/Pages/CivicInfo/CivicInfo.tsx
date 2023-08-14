@@ -114,7 +114,7 @@ export const CivicInfo = () => {
 
   const [apiCallInProgress, setApiCallInProgress] = useState<boolean>(false);
 
-  // For the google Api Error
+  // For the Google Api Error
   const [snackBarIsOpen, setSnackBarIsOpen] = useState<boolean>(false);
   const [googleApiErrorMessage, setGoogleApiErrorMessage] =
     useState<string>("");

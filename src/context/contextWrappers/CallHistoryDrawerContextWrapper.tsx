@@ -4,6 +4,8 @@ export interface GlobalContextProps {
   children: React.ReactNode;
 }
 
+// TODO - remove this ?
+
 // ==================== React Contexts ====================
 export const CallHistoryDrawerIsOpenContext = React.createContext(false);
 export const SetCallHistoryDrawerIsOpenContext = React.createContext({});
