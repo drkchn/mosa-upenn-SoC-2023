@@ -55,7 +55,7 @@ export function About() {
       >
         <Typography
           sx={{
-            padding: { xs: "5px", sm: "20px" },
+            padding: { xs: "5px", sm: "30px" },
             width: { xs: "90%", sm: "70%" },
             textAlign: "center",
           }}
@@ -63,7 +63,9 @@ export function About() {
           Our application aims to encourage users to participate in democracy by
           making it easier to access election information. When a user inputs
           their residential address, we query the Google Civics API to
-          comprehensive information about on any upcoming U.S. elections.
+          comprehensive information about on any upcoming U.S. elections. We
+          also offer the user the ability to see information about their
+          representatives on serveral different levels of government.
         </Typography>
 
         <Typography
