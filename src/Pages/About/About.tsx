@@ -42,31 +42,45 @@ export function About() {
 
   return (
     <Box>
-      <Typography variant="h3" align="center" sx={{ py: 2 }}>
+      <Typography variant="h4" align="center" sx={{ py: 2 }}>
         About Us
       </Typography>
 
-      <Typography>
-        Our website aims to encourage users to participate in democracy by
-        making it easier to access elections information.
-      </Typography>
-      <Typography>
-        When a user inputs their residential address, our website will display
-        information based on any upcoming U.S. elections! Try it out!
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "center" },
+        }}
+      >
+        <Typography
+          sx={{
+            padding: { xs: "5px", sm: "20px" },
+            width: { xs: "90%", sm: "70%" },
+            textAlign: "center",
+          }}
+        >
+          Our application aims to encourage users to participate in democracy by
+          making it easier to access election information. When a user inputs
+          their residential address, we query the Google Civics API to
+          comprehensive information about on any upcoming U.S. elections.
+        </Typography>
 
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12}>
-          <Typography variant="body1" align="center" sx={{ py: 4 }}>
-            Derek Chen: derche@seas.upenn.edu <br />
-            Connor Fech: cfech@seas.upenn.edu <br />
-            Gunjan Jhaveri: gjhaveri@seas.upenn.edu <br />
-            Prinsa Patel: prinsa@seas.upenn.edu <br />
-          </Typography>
-        </Grid>
-      </Grid>
-
-      <Typography variant="h3" align="center" sx={{ marginBottom: "25px" }}>
+        <Typography
+          variant="body1"
+          align="center"
+          sx={{
+            padding: { xs: "5px", sm: "20px" },
+            width: { xs: "90%", sm: "30%" },
+          }}
+        >
+          Derek Chen: derche@seas.upenn.edu <br />
+          Connor Fech: cfech@seas.upenn.edu <br />
+          Gunjan Jhaveri: gjhaveri@seas.upenn.edu <br />
+          Prinsa Patel: prinsa@seas.upenn.edu <br />
+        </Typography>
+      </Box>
+      <Typography variant="h4" align="center" sx={{ marginBottom: "25px" }}>
         Technology
       </Typography>
       <Grid
