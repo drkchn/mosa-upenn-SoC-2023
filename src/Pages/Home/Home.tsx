@@ -14,7 +14,7 @@ export function Home() {
     >
       <Typography variant={"h3"}>Welcome to Civics Central</Typography>
       <Typography variant={"h5"}>
-        Enter any U.S. address and we'll take it from here.
+        Enter any U.S. address and we'll take it from there.
       </Typography>
 
       <AddressSearchBar isHomePage={true} />

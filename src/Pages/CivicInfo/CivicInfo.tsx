@@ -209,7 +209,10 @@ export const CivicInfo = () => {
                 sx={{
                   padding: "0px 10px",
                   maxHeight: "300px",
-                  overflowY: "scroll",
+                  overflowY:
+                    availableElections?.elections?.length! > 4 || undefined
+                      ? "scroll"
+                      : "none",
                 }}
               >
                 <List>
