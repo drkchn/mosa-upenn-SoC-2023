@@ -135,3 +135,14 @@ export interface Candidate {
   candidateUrl: string;
   channels: Channel[];
 }
+
+// ================== Http Request Data ==================
+export interface MyHttpResponseData {
+  method: string;
+  url: string;
+  status: number;
+}
+
+export interface ActualHttpResponseData {
+  status: number;
+}

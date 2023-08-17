@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { IconButton, PaletteMode } from "@mui/material";
+import { IconButton, PaletteMode, Tooltip } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useColorMode, useSetColorMode } from "../../context/customHooks.ts";
+import Fade from "@mui/material/Fade";
 
 export const ThemeToggle = () => {
   const mode = useColorMode();
@@ -12,7 +13,7 @@ export const ThemeToggle = () => {
 
   useEffect(() => {
     if (localStorage.getItem("mode") === null) {
-      localStorage.setItem("mode", "light");
+      localStorage.setItem("mode", "dark");
     }
     const mode: PaletteMode = localStorage.getItem("mode") as PaletteMode;
     setMode(mode);
@@ -27,16 +28,24 @@ export const ThemeToggle = () => {
     );
   };
   return (
-    <IconButton
-      sx={{
-        padding: "1px 6px",
-        height: "80%",
-        margin: "auto, 1rem, auto, 1rem",
-      }}
-      onClick={toggleColorMode}
-      color="inherit"
+    <Tooltip
+      arrow
+      title="Change Theme"
+      placement={"bottom"}
+      TransitionComponent={Fade}
+      TransitionProps={{ timeout: 100 }}
     >
-      {mode == "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
-    </IconButton>
+      <IconButton
+        sx={{
+          padding: "1px 6px",
+          height: "80%",
+          margin: "auto, 1rem, auto, 1rem",
+        }}
+        onClick={toggleColorMode}
+        color="inherit"
+      >
+        {mode == "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
+    </Tooltip>
   );
 };

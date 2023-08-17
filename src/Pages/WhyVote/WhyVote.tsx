@@ -60,7 +60,7 @@ export function WhyVote() {
         justifyContent: "center",
         minHeight: "65vh",
         marginTop: "20px",
-        padding: "40px 100px 150px 100px",
+        padding: "40px",
       }}
     >
       <Box>

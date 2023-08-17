@@ -23,7 +23,7 @@ export function Example() {
   // Get theme object from MUI
   const theme = useTheme();
 
-  // Pulling the representative data from react context
+  // Pulling the representative data from React context
   const representativeData = useRepresentativeDataContext();
 
   // Check the console to view the theme object

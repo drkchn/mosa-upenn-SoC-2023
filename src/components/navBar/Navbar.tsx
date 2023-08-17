@@ -1,16 +1,15 @@
-import { useTheme } from "@mui/material";
-import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import MenuIcon from "@mui/icons-material/Menu";
 import * as React from "react";
 import Drawer from "@mui/material/Drawer";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-import { useEffect, useState } from "react";
 import { NavbarDrawer } from "./NavbarDrawer.tsx";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { HistoryToggle } from "../historyToggle/HistoryToggle.tsx";
+import { CustomListItemButton } from "./CustomListItemButton.tsx";
+import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
+import { SeeCodeButton } from "./SeeCodeButton.tsx";
 
 interface navBarProps {
   /**
@@ -18,58 +17,13 @@ interface navBarProps {
    * You won't need it on your project.
    */
   window?: () => Window;
+  setCallHistoryOpen: (open: boolean) => void;
 }
-export function Navbar({ window }: navBarProps) {
+export function Navbar({ window, setCallHistoryOpen }: navBarProps) {
   const drawerWidth = 240;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState: any) => !prevState);
-  };
-
-  const CustomListItemButton = ({ to, primary, fullWidth }: any) => {
-    const theme = useTheme();
-    const location = useLocation();
-    const [selected, setSelected] = useState<boolean>(to === location.pathname);
-
-    useEffect(() => {
-      if (location) {
-        setSelected(to === location.pathname);
-      }
-    }, [location]);
-
-    const selectedStyles = {
-      borderBottom: "5px solid",
-      borderColor: theme.palette.background.paper,
-      textAlign: "center",
-
-      "&:hover": {
-        borderBottom: "5px solid",
-        borderColor: theme.palette.secondary.main,
-        borderRadius: "5px",
-      },
-    };
-
-    const unselectedStyles = {
-      borderBottom: "5px solid",
-      borderColor: "transparent",
-      "&:hover": {
-        borderBottom: "5px solid",
-        borderColor: theme.palette.secondary.main,
-        borderRadius: "5px",
-      },
-    };
-
-    return (
-      <ListItem sx={{ width: fullWidth ? "100%" : "fit-content" }}>
-        <ListItemButton
-          component={NavLink}
-          to={to}
-          sx={selected ? selectedStyles : unselectedStyles}
-        >
-          {primary}
-        </ListItemButton>
-      </ListItem>
-    );
+    setMobileOpen((prevState: boolean) => !prevState);
   };
 
   // ====================================================================
@@ -94,6 +48,10 @@ export function Navbar({ window }: navBarProps) {
             <MenuIcon />
           </IconButton>
 
+          <Box sx={{ marginLeft: "auto", display: { sm: "none" } }}>
+            <HistoryToggle setCallHistoryOpen={setCallHistoryOpen} />
+          </Box>
+
           <Box
             justifyContent="center"
             alignItems="center"
@@ -107,7 +65,6 @@ export function Navbar({ window }: navBarProps) {
               cursor: "pointer",
             }}
             to={"/"}
-            // href={"/"}
           >
             <IconButton
               size="large"
@@ -140,6 +97,9 @@ export function Navbar({ window }: navBarProps) {
             <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
             <CustomListItemButton to={"/about"} primary={"ABOUT"} />
 
+            {/*<NavbarMenu />*/}
+            <SeeCodeButton />
+            <HistoryToggle setCallHistoryOpen={setCallHistoryOpen} />
             <ThemeToggle />
           </Box>
         </Toolbar>
@@ -161,7 +121,7 @@ export function Navbar({ window }: navBarProps) {
             },
           }}
         >
-          {<NavbarDrawer handleDrawerToggle={handleDrawerToggle} />}
+          <NavbarDrawer handleDrawerToggle={handleDrawerToggle} />
         </Drawer>
       </Box>
     </Box>
