@@ -247,7 +247,7 @@ export function WhyVote() {
                 label={{
                   value: "Year",
                   position: "insideBottomLeft",
-                  offset: -10,
+                  offset: -2,
                 }}
               />
               <YAxis
@@ -294,7 +294,7 @@ export function WhyVote() {
                 label={{
                   value: "Year",
                   position: "insideBottomLeft",
-                  offset: -10,
+                  offset: -2,
                 }}
               />
               <YAxis
