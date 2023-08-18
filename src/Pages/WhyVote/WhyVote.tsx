@@ -8,7 +8,38 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts"; //need to "npm install recharts"
+
+const techstyle = {
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: "#CDCDCD",
+    transition: "all 0.5s ease-in-out",
+    transform: "scale(1.05)",
+  },
+};
+
+const handleBoxClickOne = () => {
+  window.open(
+    "https://education.nationalgeographic.org/resource/why-voting-important/",
+    "_blank"
+  );
+};
+
+const handleBoxClickTwo = () => {
+  window.open(
+    "https://www.britannica.com/topic/election-political-science/Plurality-and-majority-systems",
+    "_blank"
+  );
+};
+
+const handleBoxClickThree = () => {
+  window.open(
+    "https://www.carnegie.org/our-work/article/voting-rights-timeline/",
+    "_blank"
+  );
+};
 
 const dataBySex = [
   { name: "1990", Female: 45.4, Male: 44.6 },
@@ -60,7 +91,7 @@ export function WhyVote() {
         justifyContent: "center",
         minHeight: "65vh",
         marginTop: "20px",
-        padding: "40px",
+        padding: { xs: "0px", sm: "0px", md: "40px" },
       }}
     >
       <Box>
@@ -111,18 +142,22 @@ export function WhyVote() {
       <Typography sx={{ marginBottom: "10px" }}></Typography>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
+          display: "flex",
+          flexDirection: { xs: "column", sm: "column", md: "row" },
+          // gridTemplateColumns: "repeat(3, 1fr)",
+          // gap: "20px",
         }}
       >
         <Box
           sx={{
+            ...techstyle,
             backgroundColor: "#FFFFFF",
             color: "primary.main",
             padding: "20px",
             borderRadius: "30px",
+            margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
           }}
+          onClick={handleBoxClickOne}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             Voting has been pivotal in advancing civil rights and promoting
@@ -131,11 +166,14 @@ export function WhyVote() {
         </Box>
         <Box
           sx={{
+            ...techstyle,
             backgroundColor: "#FFFFFF",
             color: "primary.main",
             padding: "20px",
             borderRadius: "30px",
+            margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
           }}
+          onClick={handleBoxClickTwo}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             Voting holds elected official accountable for their actions,
@@ -144,11 +182,14 @@ export function WhyVote() {
         </Box>
         <Box
           sx={{
+            ...techstyle,
             backgroundColor: "#FFFFFF",
             color: "primary.main",
             padding: "20px",
             borderRadius: "30px",
+            margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
           }}
+          onClick={handleBoxClickThree}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             By voting, you honor the struggles and sacrifices of those who
@@ -169,8 +210,22 @@ export function WhyVote() {
         Take a look at the historically reported voting rates:
       </Typography>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Box sx={{ marginRight: "80px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: { xs: "column", sm: "column", md: "row" },
+          minHeight: { xs: "750px", sm: "750px", md: "400px" },
+          width: "100%",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: { xs: "100%", sm: "100%", md: "50%" },
+          }}
+        >
           <Typography
             variant="h5"
             sx={{
@@ -183,8 +238,8 @@ export function WhyVote() {
             Voters by Sex
           </Typography>
 
-          <Box width={600} height={500}>
-            <LineChart width={600} height={500} data={dataBySex}>
+          <ResponsiveContainer width={"90%"} height={300}>
+            <LineChart data={dataBySex}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="name"
@@ -192,7 +247,7 @@ export function WhyVote() {
                 label={{
                   value: "Year",
                   position: "insideBottomLeft",
-                  offset: -10,
+                  offset: -2,
                 }}
               />
               <YAxis
@@ -208,10 +263,16 @@ export function WhyVote() {
               />
               <Line type="monotone" dataKey="Male" stroke="#82ca9d" />
             </LineChart>
-          </Box>
+          </ResponsiveContainer>
         </Box>
 
-        <Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: { xs: "100%", sm: "100%", md: "50%" },
+          }}
+        >
           <Typography
             variant="h5"
             sx={{
@@ -224,16 +285,16 @@ export function WhyVote() {
             Voters by Race
           </Typography>
 
-          <Box width={600} height={500}>
-            <LineChart width={600} height={500} data={dataByRace}>
+          <ResponsiveContainer width={"90%"} height={300}>
+            <LineChart data={dataByRace}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="name"
-                padding={{ left: 30, right: 30 }}
+                padding={{ left: 30, right: 30, bottom: 10 }}
                 label={{
                   value: "Year",
                   position: "insideBottomLeft",
-                  offset: -10,
+                  offset: -2,
                 }}
               />
               <YAxis
@@ -251,7 +312,7 @@ export function WhyVote() {
               <Line type="monotone" dataKey="Asian" stroke="#ed6c02" />
               <Line type="monotone" dataKey="Hispanic" stroke="#2e7d32" />
             </LineChart>
-          </Box>
+          </ResponsiveContainer>
         </Box>
       </Box>
 
