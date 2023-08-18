@@ -10,6 +10,27 @@ import {
   Legend,
 } from "recharts"; //need to "npm install recharts"
 
+const techstyle = {
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: "#CDCDCD",
+    transition: "all 0.5s ease-in-out",
+    transform: "scale(1.05)",
+  },
+};
+
+const handleBoxClickOne = () => {
+  window.open("https://www.google.com/", "_blank");
+};
+
+const handleBoxClickTwo = () => {
+  window.open("https://www.google.com/", "_blank");
+};
+
+const handleBoxClickThree = () => {
+  window.open("https://www.google.com/", "_blank");
+};
+
 const dataBySex = [
   { name: "1990", Female: 45.4, Male: 44.6 },
   { name: "1992", Female: 62.3, Male: 60.2 },
@@ -118,11 +139,13 @@ export function WhyVote() {
       >
         <Box
           sx={{
+            ...techstyle,
             backgroundColor: "#FFFFFF",
             color: "primary.main",
             padding: "20px",
             borderRadius: "30px",
           }}
+          onClick={handleBoxClickOne}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             Voting has been pivotal in advancing civil rights and promoting
@@ -131,11 +154,13 @@ export function WhyVote() {
         </Box>
         <Box
           sx={{
+            ...techstyle,
             backgroundColor: "#FFFFFF",
             color: "primary.main",
             padding: "20px",
             borderRadius: "30px",
           }}
+          onClick={handleBoxClickTwo}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             Voting holds elected official accountable for their actions,
@@ -144,11 +169,13 @@ export function WhyVote() {
         </Box>
         <Box
           sx={{
+            ...techstyle,
             backgroundColor: "#FFFFFF",
             color: "primary.main",
             padding: "20px",
             borderRadius: "30px",
           }}
+          onClick={handleBoxClickThree}
         >
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             By voting, you honor the struggles and sacrifices of those who
