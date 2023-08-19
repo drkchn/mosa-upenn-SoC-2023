@@ -96,8 +96,7 @@ export function Navbar({ window, setCallHistoryOpen }: navBarProps) {
             />
             <CustomListItemButton to={"/whyvote"} primary={"WHY VOTE?"} />
             <CustomListItemButton to={"/about"} primary={"ABOUT"} />
-
-            {/*<NavbarMenu />*/}
+              
             <SeeCodeButton />
             <HistoryToggle setCallHistoryOpen={setCallHistoryOpen} />
             <ThemeToggle />

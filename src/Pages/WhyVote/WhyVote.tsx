@@ -11,7 +11,12 @@ import {
   ResponsiveContainer,
 } from "recharts"; //need to "npm install recharts"
 
-const techstyle = {
+const itemStyle = {
+  backgroundColor: "#FFFFFF",
+  color: "primary.main",
+  padding: "20px",
+  borderRadius: "30px",
+  margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
   "&:hover": {
     cursor: "pointer",
     backgroundColor: "#CDCDCD",
@@ -23,21 +28,24 @@ const techstyle = {
 const handleBoxClickOne = () => {
   window.open(
     "https://education.nationalgeographic.org/resource/why-voting-important/",
-    "_blank"
+    "_blank",
+    "noopener noreferrer"
   );
 };
 
 const handleBoxClickTwo = () => {
   window.open(
     "https://www.britannica.com/topic/election-political-science/Plurality-and-majority-systems",
-    "_blank"
+    "_blank",
+    "noopener noreferrer"
   );
 };
 
 const handleBoxClickThree = () => {
   window.open(
     "https://www.carnegie.org/our-work/article/voting-rights-timeline/",
-    "_blank"
+    "_blank",
+    "noopener noreferrer"
   );
 };
 
@@ -148,49 +156,19 @@ export function WhyVote() {
           // gap: "20px",
         }}
       >
-        <Box
-          sx={{
-            ...techstyle,
-            backgroundColor: "#FFFFFF",
-            color: "primary.main",
-            padding: "20px",
-            borderRadius: "30px",
-            margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
-          }}
-          onClick={handleBoxClickOne}
-        >
+        <Box sx={itemStyle} onClick={handleBoxClickOne}>
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             Voting has been pivotal in advancing civil rights and promoting
             social change in the USA.
           </Typography>
         </Box>
-        <Box
-          sx={{
-            ...techstyle,
-            backgroundColor: "#FFFFFF",
-            color: "primary.main",
-            padding: "20px",
-            borderRadius: "30px",
-            margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
-          }}
-          onClick={handleBoxClickTwo}
-        >
+        <Box sx={itemStyle} onClick={handleBoxClickTwo}>
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             Voting holds elected official accountable for their actions,
             ensuring they fulfill their promises to the public.
           </Typography>
         </Box>
-        <Box
-          sx={{
-            ...techstyle,
-            backgroundColor: "#FFFFFF",
-            color: "primary.main",
-            padding: "20px",
-            borderRadius: "30px",
-            margin: { xs: "20px 0px", sm: "20px 0px", md: "0px 20px" },
-          }}
-          onClick={handleBoxClickThree}
-        >
+        <Box sx={itemStyle} onClick={handleBoxClickThree}>
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             By voting, you honor the struggles and sacrifices of those who
             fought for your right to vote.
@@ -290,7 +268,7 @@ export function WhyVote() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="name"
-                padding={{ left: 30, right: 30, bottom: 10 }}
+                padding={{ left: 30, right: 30 }}
                 label={{
                   value: "Year",
                   position: "insideBottomLeft",
