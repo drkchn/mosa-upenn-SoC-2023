@@ -93,30 +93,6 @@ export const CallHistoryDrawer = ({
           >
             Clear
           </Button>
-
-          <Box>
-            {/*<Typography*/}
-            {/*  variant="h6"*/}
-            {/*  component="h2"*/}
-            {/*  sx={{ marginTop: "20px" }}*/}
-            {/*>*/}
-            {/*  Total : {success + failure}*/}
-            {/*</Typography>*/}
-            {/*<Typography*/}
-            {/*  variant="h6"*/}
-            {/*  component="h2"*/}
-            {/*  sx={{ marginTop: "20px" }}*/}
-            {/*>*/}
-            {/*  Successful : {success}*/}
-            {/*</Typography>*/}
-            {/*<Typography*/}
-            {/*  variant="h6"*/}
-            {/*  component="h2"*/}
-            {/*  sx={{ marginTop: "20px" }}*/}
-            {/*>*/}
-            {/*  Failed : {failure}*/}
-            {/*</Typography>*/}
-          </Box>
           <HistoryChart failure={failure} success={success} />
         </>
       ) : null}

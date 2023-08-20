@@ -1,6 +1,5 @@
 import { MyHttpResponseData } from "../../../Interfaces.ts";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useEffect } from "react";
 
 interface callHistoryItemProps {
   response: MyHttpResponseData;
@@ -25,12 +24,7 @@ export const CallHistoryItem = ({ response }: callHistoryItemProps) => {
     ...sharedStyles,
     borderColor: theme.palette.error.main,
   };
-
-  useEffect(() => {
-    // console.log(response);
-    // console.log(JSON.parse(response));
-  }, []);
-
+  
   return (
     <Box sx={response.status == 200 ? successStyle : errorStyle}>
       <Typography>
@@ -39,5 +33,3 @@ export const CallHistoryItem = ({ response }: callHistoryItemProps) => {
     </Box>
   );
 };
-
-//

@@ -25,7 +25,7 @@ function App() {
         data-testid={"HERE"}
       >
         <Navbar setCallHistoryOpen={setCallHistoryIsOpen} />
-        <Box sx={{ padding: "20px", minHeight: "calc(100vh - 180px)" }}>
+        <Box sx={{ padding: "20px", minHeight: "calc(100vh - 175px)" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/whyvote" element={<WhyVote />} />

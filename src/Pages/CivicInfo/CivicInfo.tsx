@@ -210,7 +210,9 @@ export const CivicInfo = () => {
                   padding: "0px 10px",
                   maxHeight: "300px",
                   overflowY:
-                    availableElections!.elections.length! > 4 || undefined
+                    (availableElections != undefined &&
+                      availableElections.elections.length > 4) ||
+                    undefined
                       ? "scroll"
                       : "none",
                 }}
