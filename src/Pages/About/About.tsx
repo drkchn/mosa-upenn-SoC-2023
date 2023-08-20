@@ -19,7 +19,6 @@ const techstyle = {
   },
 };
 
-//sx={{border: "2px solid red", padding: "30px 30px 100px 30px;"}}
 export function About() {
   const [openExplanationDrawer, setOpenExplanationDrawer] =
     React.useState<boolean>(false);

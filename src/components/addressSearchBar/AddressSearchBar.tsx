@@ -123,7 +123,6 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
     axios
       .get(requestUrl)
       .then((res) => {
-        // console.log(res);
 
         // Format response to map officials to offices
         const representativeData: RepresentativeDataResponse = res.data;
@@ -223,38 +222,11 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
         onChange={handleChange}
         placeholder={placeholder}
         fullWidth
-        // sx={{
-        //   autofill: {
-        //     color: "red",
-        //   }
-        // }}
         onKeyDown={(e) => {
           if (e.key === "Enter" && userAddress.trim().length !== 0) {
             handleClick();
           }
         }}
-        // inputProps={}
-        // sx={{
-        //   "& label.Mui-focused": {
-        //     color: "secondary.main",
-        //   },
-        //   "& .MuiOutlinedInput-root": {
-        //     "&.Mui-focused fieldset": {
-        //       borderColor: "secondary.main",
-        //     },
-        //   },
-        // }}
-        // sx={{
-        //   "&:hover .MuiOutlinedInput-notchedOutline": {
-        //     borderColor: "secondary.light", // Set the desired hover color
-        //   },
-        //   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-        //     borderColor: "secondary.main !important", // Set the desired focus color
-        //   },
-        // }}
-        // InputLabelProps={{
-        //   color: "secondary",
-        // }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

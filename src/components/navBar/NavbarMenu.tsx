@@ -3,6 +3,9 @@ import * as React from "react";
 import { ThemeToggle } from "../themeToggle/ThemeToggle.tsx";
 import { HistoryToggle } from "../historyToggle/HistoryToggle.tsx";
 import CodeIcon from "@mui/icons-material/Code";
+
+// Was experimenting with collapsable menu, not use right now
+
 export const NavbarMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
