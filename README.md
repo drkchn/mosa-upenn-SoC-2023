@@ -21,9 +21,10 @@ This section walks a prospective user through the process of installing and runn
 
 ### Prerequisites
 
+- [Node Version Manager](https://github.com/nvm-sh/nvm) Install to manage multiple Node.js versions (Optional)
 - Node.js (version 18.16.0)
 - Google Civic Information API key
-  What prerequisites must be installed in order to run your project, and how do you install them?
+- What prerequisites must be installed in order to run your project, and how do you install them?
 
 ```
 Provide code samples in this fenced code block.

@@ -101,8 +101,8 @@ VITE_CIVICS_API_KEY=[Your API key goes here]
 
 3. Use it in the application
 
+## Features
 
-## Features ##
 - Responsive/Advanced design
 - React router with different pages
 - Api querying, data mapping and error handling
