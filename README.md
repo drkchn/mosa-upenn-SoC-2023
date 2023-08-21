@@ -146,6 +146,7 @@ Which frameworks, libraries, or other tools did you use to create your project?
 - [Prettier](https://prettier.io/) - Enforce code formatting
 - [EsLint] - (https://eslint.org/) - Enforce Javascript best practices
 
-### Acknowledgments
 
-### License
+## Future Features
+
+In the future we would like to add user accounts and a search history for each account. This would allow the user to see all of their previously queried data without having to search again. We would also like to integrate a map into the Civic Info page that shows the address/location fo the election. 
