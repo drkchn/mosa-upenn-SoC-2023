@@ -14,7 +14,6 @@ import { ExampleList } from "./exampleList/ExampleList.tsx";
 import { ExampleSearchBar } from "./exampleSearchBar/ExampleSearchBar.tsx";
 import { useRepresentativeDataContext } from "../../context/customHooks.ts";
 
-
 // Everything related to this component was just an example of how to do things in react
 
 export function Example() {

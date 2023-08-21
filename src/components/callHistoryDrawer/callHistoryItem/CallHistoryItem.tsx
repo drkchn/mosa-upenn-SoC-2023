@@ -24,7 +24,7 @@ export const CallHistoryItem = ({ response }: callHistoryItemProps) => {
     ...sharedStyles,
     borderColor: theme.palette.error.main,
   };
-  
+
   return (
     <Box sx={response.status == 200 ? successStyle : errorStyle}>
       <Typography>

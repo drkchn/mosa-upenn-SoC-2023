@@ -123,7 +123,6 @@ export const AddressSearchBar = ({ isHomePage }: AddressSearchBarProps) => {
     axios
       .get(requestUrl)
       .then((res) => {
-
         // Format response to map officials to offices
         const representativeData: RepresentativeDataResponse = res.data;
 
