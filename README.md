@@ -4,9 +4,11 @@
 
 ### Project summary
 
-In the United States, the voting-age population turnout has been historically lower and lags behind many other peer countries. We believe our project can help increase civic engagement by educating users. Our application aims to encourage users to participate in democracy by making it easier to access election information. When a user inputs their residential address, we query the Google Civics API to comprehensive information about on any upcoming U.S. elections. We also offer the user the ability to see information about their representatives on several different levels of government.
+In the United States, the voting-age population turnout has been historically lower and lags behind many other peer countries. We believe our project can help increase civic engagement by educating users. Our application aims to encourage users to participate in democracy by making it easier to access election information.
 
-Include the link to your Devpost project page here: [Devpost](https://...)
+When a user inputs their residential address, we query the Google Civics API to comprehensive information about on any upcoming U.S. elections. We also offer the user the ability to see information about their representatives on several different levels of government.
+
+Check out our Devpost here! [Devpost Civic Central](https://devpost.com/software/civic-central)
 
 ### Authors (by last name alphabetical order)
 
