@@ -88,6 +88,8 @@ export const SelectedElection = ({ election }: selectedElectionProps) => {
         {election.state[0]?.electionAdministrationBody
           ?.votingLocationFinderUrl ? (
           <Link
+            rel={"noopener noreferrer"}
+            target={"_blank"}
             href={
               election.state[0]?.electionAdministrationBody
                 ?.votingLocationFinderUrl
@@ -111,6 +113,8 @@ export const SelectedElection = ({ election }: selectedElectionProps) => {
         {election.state[0]?.electionAdministrationBody
           ?.electionRegistrationUrl ? (
           <Link
+            rel={"noopener noreferrer"}
+            target={"_blank"}
             href={
               election.state[0]?.electionAdministrationBody
                 ?.electionRegistrationUrl
@@ -133,6 +137,8 @@ export const SelectedElection = ({ election }: selectedElectionProps) => {
 
         {election.state[0]?.electionAdministrationBody?.electionInfoUrl ? (
           <Link
+            rel={"noopener noreferrer"}
+            target={"_blank"}
             href={
               election.state[0]?.electionAdministrationBody?.electionInfoUrl
             }

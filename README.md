@@ -14,8 +14,8 @@ Check out our Devpost here! [Devpost Civic Central](https://devpost.com/software
 
 - **Derek Chen** - @drkchn – derche [at] seas[dot]upenn[dot]edu – [GitHub](https://github.com/drkchn)
 - **Connor Fech** - @cfech – cfech [at] seas[dot]upenn[dot]edu – [GitHub](https://github.com/cfech)
-- **Gunjan Jhaveri** - @? – gjhaveri [at] seas[dot]upenn[dot]edu – [GitHub](https://github.com/gjhaveri98)
-- **Prinsa Patel** - @prinsa – prinsa [at] seas[dot]upenn[dot]edu – [GitHub](https://github.com/prinsaa)
+- **Gunjan Jhaveri** - @gjhaveri98 – gjhaveri [at] seas[dot]upenn[dot]edu – [GitHub](https://github.com/gjhaveri98)
+- **Prinsa Patel** - @prinsaa – prinsa [at] seas[dot]upenn[dot]edu – [GitHub](https://github.com/prinsaa)
 
 ## Usage
 
@@ -111,7 +111,7 @@ VITE_CIVICS_API_KEY=[Your API key goes here]
 
 ### Responsive Design
 1. All pages in the app are completely responsive
-2. They can be be viewed on any screen size without compromising the user experience
+2. The app can be viewed on any screen size without compromising the user experience
 
 ### See Our Code:
 1. Click on the `<>` icon
@@ -139,14 +139,14 @@ Which frameworks, libraries, or other tools did you use to create your project?
 - [TypeScript](https://www.typescriptlang.org/) - Programming language to enforce static typing
 - [Node.js](https://nodejs.org/en) - JavaScript runtime environment
 - [Google Cloud](https://cloud.google.com/gcp) - Google Civic Information API, monitor API usage, and prevent API overuse
-- [Google Firebase] (https://firebase.google.com/) - To host the application
+- [Google Firebase](https://firebase.google.com/) - To host the application
 - [Vite.js](https://vitejs.dev/) - As a local development and build tool
 - [Material UI](https://mui.com/) - Pre-build components, for consistent UI/UX, and responsive design
 - [Git/GitHub](https://github.com/) - Version control system, trunk based development
 - [Prettier](https://prettier.io/) - Enforce code formatting
-- [EsLint] - (https://eslint.org/) - Enforce Javascript best practices
+- [EsLint](https://eslint.org/) - Enforce Javascript best practices
 
 
 ## Future Features
 
-In the future we would like to add user accounts and a search history for each account. This would allow the user to see all of their previously queried data without having to search again. We would also like to integrate a map into the Civic Info page that shows the address/location fo the election. 
+In the future we would like to add user accounts and a search history for each account. This would allow the user to see all of their previously queried data without having to search again. We would also like to integrate a map into the Civic Info page that shows the address/location fo the election. 0
