@@ -1,4 +1,5 @@
 # Project Title: Civic Central
+![Homepage](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/87a31bef-0b86-41a0-b955-c570048bdb87)
 
 ## Overview
 
@@ -79,6 +80,7 @@ VITE_CIVICS_API_KEY=[Your API key goes here]
 ## Deployment & Features
 
 ### Using the Homepage Search Bar
+![Address Search Bar](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/2b24504b-71fc-4926-9ab9-fb17e9e53244)
 
 1. Navigate to the search bar on the homepage.
 2. Enter a U.S. residential address, then click on the `FIND MY ELECTIONS INFO!` button.
@@ -87,29 +89,38 @@ VITE_CIVICS_API_KEY=[Your API key goes here]
 5. You can click on the Election name button or Officials' name button for more information.
 
 ### Navigating the Why Vote? Page
+![Why Vote](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/51ea3273-b9f2-4aea-8490-be124fb177c0)
+![Voter Data](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/d904d56d-3201-4183-8e20-ca7137e8810c)
 
 1. Navigate to the Why Vote? page.
 2. Each of the buttons is hyperlinked to reputable sources where you can learn more about the importance of voting.
 3. You can see historical voting data from 1990-2022, based on sex and race at the bottom of the page.
 
 ### Changing the Website Theme
+![Dark Theme](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/be29120f-ecbf-491b-ae9d-62981a50a498)
 
 1. Click on the icon with the symbol of a sun.
 2. You can toggle between a light theme and a dark theme.
 3. The purple light theme represents the shared bipartisan goal of educating voters and encouraging voters to participate in democracy!
 
 ### Reviewing the Request History
+![Request history](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/2d48ab50-64b4-4b8c-9ed7-e98677c1a0b8)
 
 1. Click on the icon with the symbol of a magnifying glass and upwards line graph.
 2. You can review all prior API requests and see if an API call was successful (200 OK) or unsuccessful (400 Bad Request).
 3. You can click on `CLEAR` button to clear your request history.
 
 ### Learn More:
+![About Us](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/375aaa27-af8b-48e3-a44b-5322f0c7c9f8)
+
 1. Click on the About page to learn more about the developers
 2. Click on the Learn More button to see a detailed technical explanation of the application
 3. You can also click on any of the technologies to learn more about them individually
 
 ### Responsive Design
+![Responsive design 1](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/5290dbaa-041b-4755-82b7-9e77bdfa709f) 
+![Responsive design 2](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/0f4b0ab9-b6df-413c-b51f-e0bd9aa29117)
+
 1. All pages in the app are completely responsive
 2. The app can be viewed on any screen size without compromising the user experience
 
