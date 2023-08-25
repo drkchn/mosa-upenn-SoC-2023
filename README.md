@@ -1,5 +1,5 @@
 # Project Title: Civic Central
-![Homepage](https://github.com/drkchn/mosa-upenn-SoC-2023/assets/57195399/87a31bef-0b86-41a0-b955-c570048bdb87)
+![Homepage](public/Civics-Central-Demo-gif.gif)
 
 ## Overview
 
